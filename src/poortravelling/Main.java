@@ -16,9 +16,10 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("hola mundo");
-        System.out.println("poortravelling.Main.main()");
-        System.out.println("mama");
+       Persona p1=new Persona("silvania", "ortega","2235341614", 19);
+       p1.agragarComentario("esta es la mejor");
+       p1.agragarComentario("ru culo");
+        System.out.println("Persona 1:"+ p1.toString());
     }
     
 }
