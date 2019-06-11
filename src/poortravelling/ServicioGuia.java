@@ -1,6 +1,7 @@
 
 package poortravelling;
 
-public class ServicioGuia implements Servicio{
-  private String disponibilidadDeTiempo
+public class ServicioGuia extends Servicio{
+  private String disponibilidadDeTiempo;
+  
 }

@@ -1,6 +1,6 @@
 
 package poortravelling;
 
-public class Alojamiento implements ServivioCantidad{
+public class Alojamiento extends Servicio implements ServivioCantidad{
     
 }

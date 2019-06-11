@@ -8,7 +8,8 @@ public  class Persona {
   private String nroTelefono;
   private Integer edad;
   private ArrayList<String> comentario;//fijarnos como funcionaria, si va un arreglo o no.
-  private Integer puntaje;//fijarnos si va a arreglo o no.
+  private Integer puntaje;
+  private Lugar lugar;
 // constructor vacio
   public Persona ()
   {
@@ -16,14 +17,18 @@ public  class Persona {
       setApellido("");
       setEdad(0);
       setNroTelefono("");
+      setPuntaje(0);
+      lugar=new Lugar();
       comentario=new ArrayList<>();
   }
-// constructor completo
+// constructor completo, sin lugar, ni putntaje, ni comentaris
     public Persona(String nombre, String apellido, String nroTelefono, Integer edad) {
         setNombre(nombre);
         setApellido(apellido);
         setNroTelefono(nroTelefono);
         setEdad(edad);
+        setPuntaje(0);
+        lugar=new Lugar();
         comentario=new ArrayList<>();
     }
  // constructor copia, copia todo lo que venga en persona1//
@@ -33,7 +38,15 @@ public  class Persona {
         setApellido(persona1.getApellido());
         setNroTelefono(persona1.getNroTelefono());
         setEdad(persona1.getEdad());
-        //es necesario que los comentarios vengan incluidos en una persona, sean incluidos en esta parte ya que estos son de 
+        lugar=new Lugar();//el lugar se remplasara ya que puede ser que cuando camnie de tipo de usuario reemplaza el lugar por lo tal lo borramos y lo volvemos a inicializar en cero toda la clase 
+    }
+
+    public Integer getPuntaje() {
+        return puntaje;
+    }
+
+    private void setPuntaje(Integer puntaje) {
+        this.puntaje = puntaje;
     }
     
   

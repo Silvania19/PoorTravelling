@@ -1,7 +1,7 @@
 
 package poortravelling;
 
-public interface ServivioCantidad extends  Servicio{
+public interface ServivioCantidad {
     void setDiponibilidadCantidad(Integer disponibilidad);
     Integer getDisponibilidadCantidad();
 }
