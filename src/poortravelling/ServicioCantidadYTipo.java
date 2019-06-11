@@ -1,7 +1,9 @@
 
 package poortravelling;
 
-public interface ServivioCantidad {
+public interface ServicioCantidadYTipo {
     void setDiponibilidadCantidad(Integer disponibilidad);
+    void setTipo(String tipo);
+    String getTipo();
     Integer getDisponibilidadCantidad();
 }

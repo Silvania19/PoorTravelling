@@ -1,44 +1,57 @@
-
 package poortravelling;
 
-import  java.util.ArrayList;
-public  class Persona {
-  private String nombre;
-  private String apellido;
-  private String nroTelefono;
-  private Integer edad;
-  private ArrayList<String> comentario;//fijarnos como funcionaria, si va un arreglo o no.
-  private Integer puntaje;
-  private Lugar lugar;
+import java.util.ArrayList;
+
+public class Persona {
+
+    private String nombre;
+    private String apellido;
+    private String nroTelefono;
+    private Integer edad;
+    private ArrayList<Comentario> comentarios;//fijarnos como funcionaria, si va un arreglo o no.
+    private Integer puntaje;
+    private String contraseña;
+    private Lugar lugar;
 // constructor vacio
-  public Persona ()
-  {
-      setNombre("");
-      setApellido("");
-      setEdad(0);
-      setNroTelefono("");
-      setPuntaje(0);
-      lugar=new Lugar();
-      comentario=new ArrayList<>();
-  }
+
+    public Persona() {
+        setNombre("");
+        setApellido("");
+        setEdad(0);
+        setNroTelefono("");
+        setPuntaje(0);
+        setContraseña("");
+        lugar = new Lugar();
+        comentarios = new ArrayList<>();
+    }
 // constructor completo, sin lugar, ni putntaje, ni comentaris
-    public Persona(String nombre, String apellido, String nroTelefono, Integer edad) {
+
+    public Persona(String nombre, String apellido, String nroTelefono, Integer edad, String contraseña) {
         setNombre(nombre);
         setApellido(apellido);
         setNroTelefono(nroTelefono);
         setEdad(edad);
         setPuntaje(0);
-        lugar=new Lugar();
-        comentario=new ArrayList<>();
+        setContraseña(contraseña);
+        lugar = new Lugar();
+        comentarios = new ArrayList<>();
     }
- // constructor copia, copia todo lo que venga en persona1//
-    public  Persona(Persona persona1)
-    {
+    // constructor copia, copia todo lo que venga en persona1//
+
+    public Persona(Persona persona1) {
         setNombre(persona1.getNombre());
         setApellido(persona1.getApellido());
         setNroTelefono(persona1.getNroTelefono());
         setEdad(persona1.getEdad());
-        lugar=new Lugar();//el lugar se remplasara ya que puede ser que cuando camnie de tipo de usuario reemplaza el lugar por lo tal lo borramos y lo volvemos a inicializar en cero toda la clase 
+        lugar = new Lugar();//el lugar se remplasara ya que puede ser que cuando camnie de tipo de usuario reemplaza el lugar por lo tal lo borramos y lo volvemos a inicializar en cero toda la clase 
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    private void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public Integer getPuntaje() {
@@ -48,13 +61,12 @@ public  class Persona {
     private void setPuntaje(Integer puntaje) {
         this.puntaje = puntaje;
     }
-    
-  
+
     public String getNombre() {
         return nombre;
     }
 
-   private void setNombre(String nombre) {
+    private void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -70,7 +82,7 @@ public  class Persona {
         return nroTelefono;
     }
 
-   private  void setNroTelefono(String nroTelefono) {
+    private void setNroTelefono(String nroTelefono) {
         this.nroTelefono = nroTelefono;
     }
 
@@ -78,29 +90,30 @@ public  class Persona {
         return edad;
     }
 
-   private  void setEdad(Integer edad) {
+    private void setEdad(Integer edad) {
         this.edad = edad;
     }
-   public void agragarComentario(String comentario)
-   {
-       this.comentario.add(comentario);
-   }
-   public String listarComentarios()
-   {
-       String retorno=new String();
-       for(String comentario: comentario)
-       {
-           retorno+=" \n "+comentario;
-       }
-       return retorno;
-   }
+
+    public void agregarComentario(Comentario comen) {
+        comentarios.add(comen);
+    }
+    public Comentario comentar(String comentario)
+    {
+        Comentario retornoComentario=new Comentario(nombre, comentario);/// para generar un objeto comentario, creamos el objeto comentario y como parametro le mandamos nuestro nombre para que lo guarde en el nombre de comentario
+        return retornoComentario;/// este comentario posteriormente tien que ser agragdo al arreglo de cometrarios de otra persona 
+          //para agragar usara la funcion agregarFuncion               
+    }
+    public String listarComentarios() {
+        String retorno = new String();
+        for (Comentario come : comentarios) {
+            retorno += " \n " + comentarios.toString();
+        }
+        return retorno;
+    }
+
     @Override
     public String toString() {
-        return  "\n Nombre:  "+getNombre()+"\n Apellido:  "+getApellido()+"\n Edad:  "+ getEdad()+"\n Numero de telefono:  "+getNroTelefono()+" \n Comentarios: "+listarComentarios();
-      }
+        return "\n Nombre:  " + getNombre() + "\n Apellido:  " + getApellido() + "\n Edad:  " + getEdad() + "\n Numero de telefono:  " + getNroTelefono() + " \n Comentarios: " + listarComentarios();
+    }
 
-   
-  
-   
 }
-

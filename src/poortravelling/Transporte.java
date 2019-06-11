@@ -1,25 +1,36 @@
 
 package poortravelling;
 
-public class Transporte extends Servicio implements ServivioCantidad{
+public class Transporte extends ServicioAyudante implements ServicioCantidadYTipo{
     
-  private Integer disponibilidadCantidad;
+  
+  private String tipoTransporte;
 public Transporte()
 {
-    super(0, disponibilidadTiempo);
+    super();
+    setTipo("");
 }
+
+  
+
+    @Override
+    public void setTipo(String tipo) {
+        tipoTransporte=tipo;
+    }
+
    
+
+  
     @Override
-    public void setDiponibilidadCantidad(Integer disponibilidad) {
-      disponibilidadCantidad=disponibilidad;  
+    public String getTipo() {
+     return  tipoTransporte;
     }
 
-    @Override
-    public Integer getDisponibilidadCantidad() {
-        return disponibilidadCantidad;
+   
 
-    }
 
+   
+    
     
 
    
