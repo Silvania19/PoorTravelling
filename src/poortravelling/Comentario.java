@@ -1,6 +1,7 @@
 
 package poortravelling;
-
+import org.json.JSONObject;
+import org.json.JSONException;
 public class Comentario{
     private String nombre;
     private String comentario;
@@ -35,6 +36,11 @@ public class Comentario{
     public String toString() {
         return  "  "+getNombre()+" comento:  "+getComentario();
     }
-   
+   public JSONObject cambiarComentarioAJson() throws JSONException
+   {
+       JSONObject obj=new JSONObject();
+       obj.put(nombre, comentario);
+       return  obj;
+   }
     
 }

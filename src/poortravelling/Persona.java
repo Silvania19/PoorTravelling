@@ -1,19 +1,20 @@
 package poortravelling;
 
 import java.util.ArrayList;
-
-public class Persona {
+import org.json.JSONArray;
+import org.json.JSONException;
+public abstract class Persona {
 
     private String nombre;
     private String apellido;
     private String nroTelefono;
     private Integer edad;
-    private ArrayList<Comentario> comentarios;//fijarnos como funcionaria, si va un arreglo o no.
-    private Integer puntaje;
     private String contraseña;
-    private Lugar lugar;
+    private ArrayList<Comentario> comentarios;
+    private Integer puntaje;
+    private Lugar lugar;// para que ponga el destino al que quiere vajar.
 // constructor vacio
-
+ abstract public void agregarLugarDestino(String pais, String ciudad, String localidad);
     public Persona() {
         setNombre("");
         setApellido("");
@@ -103,6 +104,10 @@ public class Persona {
         return retornoComentario;/// este comentario posteriormente tien que ser agragdo al arreglo de cometrarios de otra persona 
           //para agragar usara la funcion agregarFuncion               
     }
+    public Lugar getLugar()
+    {
+        return lugar;
+    }
     public String listarComentarios() {
         String retorno = new String();
         for (Comentario come : comentarios) {
@@ -116,4 +121,12 @@ public class Persona {
         return "\n Nombre:  " + getNombre() + "\n Apellido:  " + getApellido() + "\n Edad:  " + getEdad() + "\n Numero de telefono:  " + getNroTelefono() + " \n Comentarios: " + listarComentarios();
     }
 
+    protected void modificarLugar(String pais, String ciudad, String localidad)
+    {
+        lugar= new Lugar(pais, ciudad, localidad);
+    }
+    public void arregloJson()
+    {
+        
+    }
 }
