@@ -5,15 +5,15 @@ public class Main {
 
     
     public static void main(String[] args) {
+      Contenedora conte=new Contenedora();
       
-       Persona sil=new Persona("sil", "ortega", "jsjjsjs", 566789, "tuculo");
-       Persona flor =new Persona("FLOR", "JUAREZ" ," HAHGAGDG" ,354375 ,"DGHSJDJHSAJH");
-       Comentario come=new Comentario();
-        come= sil.comentar(" morite");
-       flor.agregarComentario(come);
-       
-        System.out.println("per1"+flor.listarComentarios());
-        
+      
+    }
+    public static void menu1()
+    {
+        System.out.println("2-crear usuario");
+        System.out.println("1-entrar");
+        System.out.println("3-salir");
     }
     
 }

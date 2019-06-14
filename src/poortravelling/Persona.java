@@ -125,8 +125,5 @@ public abstract class Persona {
     {
         lugar= new Lugar(pais, ciudad, localidad);
     }
-    public void arregloJson()
-    {
-        
-    }
+   
 }
