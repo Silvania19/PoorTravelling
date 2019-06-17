@@ -10,8 +10,8 @@ public class GuiaTurista extends Persona{
         serGuia=new ServicioGuia();
     }
    // cinstructor completo peo dejamos aparte los datos que se le pide al guia para completar su servicio.
-    public GuiaTurista( String nombre, String apellido, String nroTelefono, Integer edad, String contraseña) {
-        super(nombre, apellido, nroTelefono, edad, contraseña);
+    public GuiaTurista( String nombre, String apellido, String nroTelefono, Integer edad, String contraseña, Integer id) {
+        super(nombre, apellido, nroTelefono, edad, contraseña, id);
         serGuia=new ServicioGuia();
     }
     public void agregarServivio(String lugarTuristico, float precio, String disponibilidadTiempo)

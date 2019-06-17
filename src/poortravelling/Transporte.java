@@ -1,7 +1,7 @@
 
 package poortravelling;
 
-public class Transporte extends ServicioAyudante implements ServicioCantidadYTipo{
+public class Transporte extends ServicioAyudante implements IServicioCantidadYTipo{
     
   
   private String tipoTransporte;
@@ -11,17 +11,11 @@ public Transporte()
     setTipo("");
 }
 
-  
-
-    @Override
+@Override
     public void setTipo(String tipo) {
         tipoTransporte=tipo;
     }
-
-   
-
-  
-    @Override
+  @Override
     public String getTipo() {
      return  tipoTransporte;
     }

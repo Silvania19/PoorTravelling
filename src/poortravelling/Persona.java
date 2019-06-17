@@ -3,6 +3,7 @@ package poortravelling;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 public abstract class Persona {
 
     private String nombre;
@@ -10,11 +11,12 @@ public abstract class Persona {
     private String nroTelefono;
     private Integer edad;
     private String contraseña;
+    private Integer id;
     private ArrayList<Comentario> comentarios;
     private Integer puntaje;
     private Lugar lugar;// para que ponga el destino al que quiere vajar.
 // constructor vacio
- abstract public void agregarLugarDestino(String pais, String ciudad, String localidad);
+ public abstract  void agregarLugarDestino(String pais, String ciudad, String localidad);
     public Persona() {
         setNombre("");
         setApellido("");
@@ -22,18 +24,20 @@ public abstract class Persona {
         setNroTelefono("");
         setPuntaje(0);
         setContraseña("");
+        setId(0);
         lugar = new Lugar();
         comentarios = new ArrayList<>();
     }
 // constructor completo, sin lugar, ni putntaje, ni comentaris
 
-    public Persona(String nombre, String apellido, String nroTelefono, Integer edad, String contraseña) {
+    public Persona(String nombre, String apellido, String nroTelefono, Integer edad, String contraseña, Integer id) {
         setNombre(nombre);
         setApellido(apellido);
         setNroTelefono(nroTelefono);
         setEdad(edad);
         setPuntaje(0);
         setContraseña(contraseña);
+        setId(id);
         lugar = new Lugar();
         comentarios = new ArrayList<>();
     }
@@ -44,9 +48,17 @@ public abstract class Persona {
         setApellido(persona1.getApellido());
         setNroTelefono(persona1.getNroTelefono());
         setEdad(persona1.getEdad());
+        setId(persona1.getId());
         lugar = new Lugar();//el lugar se remplasara ya que puede ser que cuando camnie de tipo de usuario reemplaza el lugar por lo tal lo borramos y lo volvemos a inicializar en cero toda la clase 
     }
-
+      private void setId(Integer id)
+      {
+          this.id=id;
+      }
+      public Integer getId()
+      {
+          return id;
+      }
     public String getContraseña() {
         return contraseña;
     }
@@ -118,12 +130,39 @@ public abstract class Persona {
 
     @Override
     public String toString() {
-        return "\n Nombre:  " + getNombre() + "\n Apellido:  " + getApellido() + "\n Edad:  " + getEdad() + "\n Numero de telefono:  " + getNroTelefono() + " \n Comentarios: " + listarComentarios();
+        return "\n Numero de Usuario"+getId()+"\n Nombre:  " + getNombre() + "\n Apellido:  " + getApellido() + "\n Edad:  " + getEdad() + "\n Numero de telefono:  " + getNroTelefono() + " \n Comentarios: " + listarComentarios();
     }
 
     protected void modificarLugar(String pais, String ciudad, String localidad)
     {
         lugar= new Lugar(pais, ciudad, localidad);
     }
+    public void sumarPuntaje(Integer puntaje)//establecer limites de puntaje de 1 a 10
+   {
+     this.puntaje+=puntaje;
+   }
+    public JSONObject getFormatoJSON() throws JSONException
+    {
+        JSONObject jsonPersona= new JSONObject();
+        
+        jsonPersona.put("apellido", apellido);
+        jsonPersona.put("nombre", nombre);
+        jsonPersona.put("nroTelefono", nroTelefono);
+        jsonPersona.put("contraseña", contraseña);
+        jsonPersona.put("id", id);
+        jsonPersona.put("edad", edad);
+        jsonPersona.put("puntaje", puntaje);
+        jsonPersona.put("lugar", lugar.getFormatoJsonLugar());
+        JSONArray jsonArray_Comentarios= new JSONArray();
+        for(Comentario comen: comentarios)
+        {
+            jsonArray_Comentarios.put(comen.cambiarComentarioAJson());
+            
+        }
+           jsonPersona.put("comentarios", jsonArray_Comentarios);
+        return  jsonPersona;
+        
+    }
+    
    
 }

@@ -2,7 +2,7 @@
 package poortravelling;
 
 import java.util.TreeMap;
-public class ManejoUsuario <t>{
+public class ManejoUsuario <t extends Persona>{
     TreeMap<String, t> coleccionUsuario;
   public ManejoUsuario()
   {
@@ -18,6 +18,12 @@ public class ManejoUsuario <t>{
       coleccionUsuario.remove(contraseña);
      
       
+  }
+  public t mostrar(String contraseña)
+  {
+     t retorno= coleccionUsuario.get(contraseña);
+     return retorno;
+     
   }
   
   

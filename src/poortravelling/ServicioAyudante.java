@@ -1,7 +1,7 @@
 
 package poortravelling;
 
-public abstract  class ServicioAyudante extends Servicio implements ServicioCantidadYTipo{
+public abstract  class ServicioAyudante extends Servicio implements IServicioCantidadYTipo{
      private Integer disponibilidadCantidad;
 
    public ServicioAyudante()

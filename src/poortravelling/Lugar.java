@@ -1,6 +1,9 @@
 
 package poortravelling;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Lugar {
     
    private String pais;
@@ -69,6 +72,15 @@ public class Lugar {
     @Override
     public String toString() {
         return  "\n  Pais: "+pais+"\n  Ciudad: "+ciudad+"\n  Localidad:  "+localidad;
+    }
+    public JSONObject getFormatoJsonLugar()throws  JSONException
+    {
+        JSONObject jsonObject= new JSONObject();
+        jsonObject.put("pais", pais);
+        jsonObject.put("ciudad", ciudad);
+        jsonObject.put("localidad", localidad);
+        
+        return jsonObject;
     }
     
    
