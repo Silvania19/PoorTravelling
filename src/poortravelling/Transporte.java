@@ -10,6 +10,11 @@ public Transporte()
     super();
     setTipo("");
 }
+public Transporte (String tipoServivio, Integer disponibilidadCantidad, float precio, String disponibilidadTiempo)
+{
+    super(disponibilidadCantidad, precio, disponibilidadTiempo);
+    setTipo(tipoServivio);
+}
 
 @Override
     public void setTipo(String tipo) {

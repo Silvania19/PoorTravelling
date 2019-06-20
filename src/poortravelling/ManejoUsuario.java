@@ -2,8 +2,12 @@
 package poortravelling;
 
 import java.util.TreeMap;
+import  java.util.Iterator;
+import java.util.Map;
+import javax.swing.RowFilter;
 public class ManejoUsuario <t extends Persona>{
     TreeMap<String, t> coleccionUsuario;
+    
   public ManejoUsuario()
   {
       coleccionUsuario=new TreeMap<>();
@@ -12,19 +16,53 @@ public class ManejoUsuario <t extends Persona>{
   public void  agregarUsuario(String contraseña, t usuario){
       coleccionUsuario.put(contraseña, usuario);
   }
-  public void eliminar(String contraseña)
+  public void eliminar(String contraseña)throws ContraseñaNoExisteException
   {
-      
+      if(coleccionUsuario.containsKey(contraseña))
+      {
       coleccionUsuario.remove(contraseña);
+      }
+      else {
+          throw new ContraseñaNoExisteException("LA CONTRASEÑA NO EXISTE");
+      }
      
       
   }
-  public t mostrar(String contraseña)
+  //para mostrar la informacion del usuario que este usando la app
+  public t mostrarUnUsuario(String contraseña)
   {
      t retorno= coleccionUsuario.get(contraseña);
      return retorno;
      
   }
-  
+ 
+    public StringBuilder mostrarPorRangoDeEdad(int inferior, int superior)
+    {
+     StringBuilder retorno =new StringBuilder();
+    
+    
+            for(Map.Entry< String, t>usuario: coleccionUsuario.entrySet())
+            {
+            if(usuario.getValue().getEdad()>=inferior && usuario.getValue().getEdad()<=superior)
+            {
+                retorno.append(usuario.getValue().toString());
+            }
+
+       }
+            return retorno;
+    }
+    public StringBuilder mostrarPorDestino(Lugar destino)
+    {
+        StringBuilder retorno=new StringBuilder();
+        StringBuilder contraseña=new StringBuilder();
+        for(Map.Entry<String, t>usuario: coleccionUsuario.entrySet())
+        {
+            if(usuario.getValue().getLugar().equals(destino))
+            {
+                retorno.append(usuario.getValue().toString());
+            }
+        }
+        return retorno;
+    }
   
 }

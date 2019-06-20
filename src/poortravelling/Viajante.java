@@ -2,8 +2,8 @@
 package poortravelling;
 
 
-public class Viajante extends  Persona{
- private String TipoDeServicio;
+public abstract  class Viajante extends  Persona{
+ /*private String TipoDeServicio;
     private String FechaDelServicio;
     
     public Viajante()
@@ -52,5 +52,5 @@ public class Viajante extends  Persona{
         modificarLugar(pais, ciudad, localidad);
     }
        
-    
+    */
 }
