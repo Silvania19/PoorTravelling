@@ -10,7 +10,7 @@ public abstract  class ServicioAyudante extends Servicio implements IServicioCan
        setDiponibilidadCantidad(0);
    }
     public ServicioAyudante(Integer disponibilidadCantidad, float precio, String disponibilidadTiempo) {
-        super(precio, disponibilidadTiempo);
+       super(disponibilidadTiempo);
         setDiponibilidadCantidad(disponibilidadCantidad);
     }
    
@@ -26,5 +26,7 @@ public abstract  class ServicioAyudante extends Servicio implements IServicioCan
         return disponibilidadCantidad;
 
     }
+    
+    
 
 }

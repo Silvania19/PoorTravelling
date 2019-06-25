@@ -3,7 +3,7 @@ package poortravelling;
 public class Alojamiento extends ServicioAyudante {
 
     private String tipoAlojamiento;
-
+    public static float PRECIOLIMITEALOJAMIENTO=500;
     public Alojamiento() {
         super();
         setTipo("");
@@ -25,6 +25,19 @@ public class Alojamiento extends ServicioAyudante {
     @Override
     public String getTipo() {
     return tipoAlojamiento;
+    }
+
+    @Override
+    public boolean verificarPrecio(float precio) throws PrecioIncorrectoException{
+  if(precio<=PRECIOLIMITEALOJAMIENTO)
+  {
+      return true;
+  }
+  else
+  {
+      throw new PrecioIncorrectoException("el precio para el alojamiento es incorrecto");
+      
+  }
     }
 
 }

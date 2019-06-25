@@ -3,19 +3,21 @@ package poortravelling;
 
 
 public abstract class Servicio {
+
  private  float precio;
  private String  disponibilidadTiempo;/// disponibilidad de fecha por ejemplo digo que estoy disponible de 23 de junio a 6 de julio
- 
+ abstract public boolean verificarPrecio(float precio)throws PrecioIncorrectoException;
   public Servicio()
   {
       setPrecio(0);
       setDisponibilidadTiempo("");
   }
-    public Servicio(float precio, String  disponibilidadTiempo) {
+  //no inicializamos precio con un valor traido hasta que verifiquemos en las clases hijas
+    public Servicio( String  disponibilidadTiempo) {
         setDisponibilidadTiempo(disponibilidadTiempo);
-        setPrecio(precio);
+        
     }
-
+ 
     public float getPrecio() {
         return precio;
     }
@@ -35,6 +37,5 @@ public abstract class Servicio {
     {
         setPrecio(nuevoPrecio);
     }
- 
- 
+
 }

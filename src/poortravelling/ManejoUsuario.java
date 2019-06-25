@@ -16,9 +16,14 @@ public class ManejoUsuario <t extends Persona>{
   public void  agregarUsuario(String contraseña, t usuario){
       coleccionUsuario.put(contraseña, usuario);
   }
+  public boolean existeUsuario(String contraseña)
+          
+  {
+      return coleccionUsuario.containsKey(contraseña);
+  }
   public void eliminar(String contraseña)throws ContraseñaNoExisteException
   {
-      if(coleccionUsuario.containsKey(contraseña))
+      if(existeUsuario(contraseña))
       {
       coleccionUsuario.remove(contraseña);
       }
@@ -29,9 +34,16 @@ public class ManejoUsuario <t extends Persona>{
       
   }
   //para mostrar la informacion del usuario que este usando la app
-  public t mostrarUnUsuario(String contraseña)
-  {
-     t retorno= coleccionUsuario.get(contraseña);
+  public t mostrarUnUsuario(String contraseña)throws ContraseñaNoExisteException
+  { 
+      t retorno;
+     if(existeUsuario(contraseña))
+     {
+      retorno= coleccionUsuario.get(contraseña);
+     }
+     else{
+         throw new ContraseñaNoExisteException("la contraseña no existe");
+     }
      return retorno;
      
   }

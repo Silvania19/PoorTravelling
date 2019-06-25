@@ -32,6 +32,7 @@ public class Main {
       //variables para crear la persona
       String nombre,apellido, nroTelefono, contraseña, comentario;
       Integer edad, id;
+      
       //
       int opcion;
       
@@ -45,7 +46,7 @@ public class Main {
                      
                                 System.out.println("ingrese nombre: ");
                                 nombre=lectorMenu.nextLine();
-                                System.out.println("ingrese apellido");
+                                System.out.println("ingrese apellido: ");
                                 apellido=lectorMenu.nextLine();
                                 System.out.println("ingrese edad:");
                                 edad=lectorMenu.nextInt();
@@ -64,21 +65,28 @@ public class Main {
                                 ayudanteNuevo=new Ayudante(nombre, apellido, nroTelefono, edad, contraseña, 0);
                                 do {                                    
                                     menu1de2de1();
+                                    String tipoDeServicio, disponibilidadTiempo;
+                                    Integer cantidadDisponible;
+                                    float precio;
                                     opcion=lectorMenu.nextInt();
                                     switch(opcion)
                                     {
                                         case 1:
                                             System.out.println("ingrese tipo:");
-                                            System.out.println("ingrese cantidad de lugares disponibles que tiene");//cantidad de persons
+                                            tipoDeServicio=lectorMenu.nextLine();
+                                            System.out.println("ingrese cantidad de lugares(espacio) disponibles que tiene");//cantidad de persons
+                                            cantidadDisponible=lectorMenu.nextInt();
                                             System.out.println("ingrese cuanto tiempo dispone el servicio");
+                                            disponibilidadTiempo=lectorMenu.nextLine();
                                             System.out.println("ingrese el precio de su servicio");
-                                            serTransporte=new Transporte(comentario, opcion, 0, apellido)
+                                            precio=lectorMenu.nextFloat();
+                                            serTransporte=new Transporte(tipoDeServicio, opcion, 0, tipoDeServicio);
                                             
                                     }
-                                } while ({);
+                                } while (opcion!=0);
                         }
                         
-                    }
+                    }while(opcion!=0);
                     
                     
                     
