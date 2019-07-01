@@ -9,9 +9,12 @@ public abstract  class ServicioAyudante extends Servicio implements IServicioCan
        super();
        setDiponibilidadCantidad(0);
    }
-    public ServicioAyudante(Integer disponibilidadCantidad, float precio, String disponibilidadTiempo) {
+    public ServicioAyudante(Integer disponibilidadCantidad,  String disponibilidadTiempo) {
        super(disponibilidadTiempo);
         setDiponibilidadCantidad(disponibilidadCantidad);
+        
+        
+        
     }
    
     

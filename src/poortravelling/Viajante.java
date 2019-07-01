@@ -3,7 +3,7 @@ package poortravelling;
 
 
 public abstract  class Viajante extends  Persona{
- /*private String TipoDeServicio;
+ private String TipoDeServicio;
     private String FechaDelServicio;
     
     public Viajante()
@@ -22,7 +22,7 @@ public abstract  class Viajante extends  Persona{
     }
       public Viajante(Viajante V1 ) {
        
-        super(V1.);
+        super(V1);
         setTipoDeServicio(V1.getTipoDeServicio());
         setFechaDelServicio(V1.getFechaDelServicio());
     }
@@ -52,5 +52,5 @@ public abstract  class Viajante extends  Persona{
         modificarLugar(pais, ciudad, localidad);
     }
        
-    */
+  
 }

@@ -1,6 +1,7 @@
 
 package poortravelling;
 
+
 public class Transporte extends ServicioAyudante implements IServicioCantidadYTipo{
     
   public static float PRECIOLIMITETRAMSPORTE=300;
@@ -10,11 +11,35 @@ public Transporte()
     super();
     setTipo("");
 }
-public Transporte (String tipoServivio, Integer disponibilidadCantidad, float precio, String disponibilidadTiempo)
+public Transporte (String tipoServicio, Integer disponibilidadCantidad, String disponibilidadTiempo)
 {
-    super(disponibilidadCantidad, precio, disponibilidadTiempo);
-    setTipo(tipoServivio);
+    super(disponibilidadCantidad, disponibilidadTiempo);
+    setTipo(tipoServicio);
+    setPrecio(0);
+    
 }
+
+ 
+   /* @Override
+  public void  modificarPrecio(float nuevoPrecio)
+{
+  String retorno=new String();
+  boolean modificoOno;
+      try {
+            while( verificarPrecio(nuevoPrecio))
+          
+              setPrecio(nuevoPrecio);
+            modificoOno=true;
+             
+      }
+         
+            catch (PrecioIncorrectoException ex) {
+              retorno=ex.getMessage();
+                modificarPrecio(nuevoPrecio);
+            }
+    return retorno; 
+}
+*/
 
 @Override
     public void setTipo(String tipo) {
@@ -42,6 +67,11 @@ public Transporte (String tipoServivio, Integer disponibilidadCantidad, float pr
      }
    return retorno;
  }
+
+    @Override
+    public boolean modificarPrecio(float precio) throws PrecioIncorrectoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     }
 
    

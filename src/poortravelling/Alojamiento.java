@@ -10,9 +10,13 @@ public class Alojamiento extends ServicioAyudante {
 
     }
 
-    public Alojamiento(String tipoAlojamiento, Integer disponibilidadCantidad, float precio, String disponibilidadTiempo) {
-        super(disponibilidadCantidad, precio, disponibilidadTiempo);
+    public Alojamiento(String tipoAlojamiento, Integer disponibilidadCantidad, float precio, String disponibilidadTiempo) throws  PrecioIncorrectoException{
+        super(disponibilidadCantidad,  disponibilidadTiempo);
         setTipo(tipoAlojamiento);
+        if(verificarPrecio(precio))
+        {
+            setPrecio(precio);
+        }
     }
     
 
@@ -38,6 +42,11 @@ public class Alojamiento extends ServicioAyudante {
       throw new PrecioIncorrectoException("el precio para el alojamiento es incorrecto");
       
   }
+    }
+
+    @Override
+    public boolean modificarPrecio(float precio) throws PrecioIncorrectoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

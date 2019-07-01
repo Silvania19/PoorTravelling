@@ -4,7 +4,7 @@ package poortravelling;
 import java.util.TreeMap;
 import  java.util.Iterator;
 import java.util.Map;
-import javax.swing.RowFilter;
+
 public class ManejoUsuario <t extends Persona>{
     TreeMap<String, t> coleccionUsuario;
     

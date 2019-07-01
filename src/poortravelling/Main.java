@@ -2,6 +2,7 @@
 package poortravelling;
 import  java.util.ArrayList;
 import java.util.Scanner;
+
 public class Main {
 
     
@@ -32,11 +33,33 @@ public class Main {
       //variables para crear la persona
       String nombre,apellido, nroTelefono, contraseña, comentario;
       Integer edad, id;
-      
+       serTransporte=new Transporte("casa", 3,"desde el martes mama");
       //
       int opcion;
+           serviGuia=new ServicioGuia("tu culo", "desde el martes");
+        
+           float precio;
+           Scanner le=new Scanner(System.in);
+           precio=le.nextFloat();
+           
+          try {
+              while (!serviGuia.modificarPrecio(precio))
+              {
+                  System.out.println("precio incorrecto vuelva a ingresar el precio");
+                  precio=le.nextFloat();
+              }
+          } catch (PrecioIncorrectoException ex) {
+              System.out.println(ex.getMessage());
+          }
+    
+           precio=le.nextFloat();
+           System.out.println(serviGuia.agregarPrecio(precio));
+           
+        
+    
       
       
+      /*
        do {
             menu1();
             Scanner lectorMenu = new Scanner(System.in);
@@ -93,9 +116,10 @@ public class Main {
             }
        }while(opcion!=0);
             
-      
+     */ 
       
     }
+        
     public static void menu1()
     {
         System.out.println("1-crear usuario");
@@ -115,3 +139,4 @@ public class Main {
     }
     
 }
+

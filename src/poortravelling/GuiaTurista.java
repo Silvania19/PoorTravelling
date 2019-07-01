@@ -14,9 +14,9 @@ public class GuiaTurista extends Persona{
         super(nombre, apellido, nroTelefono, edad, contraseña, id);
         serGuia=new ServicioGuia();
     }
-    public void agregarServivio(String lugarTuristico, float precio, String disponibilidadTiempo)
+    public void agregarServivio(String lugarTuristico, String disponibilidadTiempo)throws PrecioIncorrectoException
     {
-        serGuia=new ServicioGuia(lugarTuristico, precio, disponibilidadTiempo);
+        serGuia=new ServicioGuia(lugarTuristico,disponibilidadTiempo);
     }
 
     @Override
