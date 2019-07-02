@@ -66,7 +66,6 @@ public class ManejoUsuario <t extends Persona>{
     public StringBuilder mostrarPorDestino(Lugar destino)
     {
         StringBuilder retorno=new StringBuilder();
-        StringBuilder contraseña=new StringBuilder();
         for(Map.Entry<String, t>usuario: coleccionUsuario.entrySet())
         {
             if(usuario.getValue().getLugar().equals(destino))
@@ -75,6 +74,18 @@ public class ManejoUsuario <t extends Persona>{
             }
         }
         return retorno;
+    }
+    public StringBuilder mostrarPorTipoDeServicio(int tipoServicio)
+    {
+        StringBuilder retorno=new StringBuilder();
+        for(Map.Entry<String, t>usuario: coleccionUsuario.entrySet())
+        {
+            if(tipoServicio==1)
+            {
+                if(usuario.getValue().)
+            }
+        }
+        
     }
   
 }

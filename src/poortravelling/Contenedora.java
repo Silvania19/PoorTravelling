@@ -41,4 +41,13 @@ public class Contenedora {
     {
         personaGuia.agregar(guia);
     }
+    //1=tranporte, 2=alojamiento
+    public StringBuilder buscarAyudanteXTipoServicio(int tipo)
+    {
+        StringBuilder retorno= new StringBuilder();
+        if(tipo==1)
+        {
+            for(personaAyudante.)
+        }
+    }
 }

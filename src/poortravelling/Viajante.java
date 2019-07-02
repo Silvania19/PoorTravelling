@@ -1,56 +1,73 @@
 
 package poortravelling;
 
-
-public abstract  class Viajante extends  Persona{
- private String TipoDeServicio;
-    private String FechaDelServicio;
-    
-    public Viajante()
+import  java.util.ArrayList;
+public  class Viajante extends  Persona{
+ ArrayList<Servicio> tiposervicio;
+  public Viajante()
     {
         super();
-        setTipoDeServicio(" ");
-        setFechaDelServicio(" ");
-        
+        tiposervicio= new ArrayList<>();
     }
 
-    
-    public Viajante(String nombre, String apellido, String nroTelefono, Integer edad, String contraseña, Integer id ,String TipoDeServicio, String FechaDelServicio) {
-         super(nombre, apellido, nroTelefono,edad,contraseña, id);
-        setTipoDeServicio(TipoDeServicio);
-        setFechaDelServicio(FechaDelServicio);
-    }
-      public Viajante(Viajante V1 ) {
+    public Viajante(String nombre, String apellido, String nroTelefono, Integer edad, String contraseña, Integer id) {
+         super(nombre, apellido, nroTelefono,edad,contraseña, 0);
+         tiposervicio=new ArrayList<>();
        
-        super(V1);
-        setTipoDeServicio(V1.getTipoDeServicio());
-        setFechaDelServicio(V1.getFechaDelServicio());
     }
-   
-    private String getTipoDeServicio() {
-        return TipoDeServicio;
-    }
-
-    private void setTipoDeServicio(String TipoDeServicio) {
-        this.TipoDeServicio = TipoDeServicio;
-    }
-
-    private String getFechaDelServicio() {
-        return FechaDelServicio;
-    }
-
-    private void setFechaDelServicio(String FechaDelServicio) {
-        this.FechaDelServicio = FechaDelServicio;
-    }
-
     public String ToString() {
-        return super.toString() + "\n  TipoDeServicio:" + getTipoDeServicio() + "\n  FechaDelServicio:" + getFechaDelServicio();
+        return super.toString();
+    }
+    public void agregar(Servicio servicio)
+    {
+        tiposervicio.add(servicio);
     }
 
     @Override
     public void agregarLugarDestino(String pais, String ciudad, String localidad) {
         modificarLugar(pais, ciudad, localidad);
     }
-       
+       public String mostrar()
+       {
+           String retorno= new String();
+           for(Servicio s: tiposervicio)
+           {
+               retorno+= s.toString();
+           }
+           return retorno;
+       }
+  public void eliminarServicio(Servicio servicio)
+  {
+      tiposervicio.remove(servicio);
+  }
+  public String mostrarServicioEspecifico(Servicio servicio)
+  {
+      String retorno= new String();
+      retorno=servicio.toString();
+      return  retorno;
+  }
+  public Servicio buscarServicioPorDisponibilidadDeTiempo(String dispTiempo){
+      Servicio serRetorno = null;
+      for(Servicio serv: tiposervicio)
+      {
+          if (serv instanceof Transporte) {
+              serRetorno= new Transporte();
+              
+          }
+          else if(serv instanceof  Alojamiento)
+          {
+              serRetorno= new Alojamiento();
+          }
+          else
+          {
+            serRetorno= new ServicioGuia();
+          }
+          if(serRetorno.getDisponibilidadTiempo().equals(dispTiempo))
+          {
+              serRetorno=serv;
+          }
+      }
+      return serRetorno;
+  } 
   
 }
