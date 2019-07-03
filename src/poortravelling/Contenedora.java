@@ -29,10 +29,15 @@ public class Contenedora {
     }
 
 
-    public JSONObject formatoJsonContenedora()
+    public JSONObject formatoJsonContenedora()throws  JSONException
     {
         JSONObject jsonConteRetorno=new JSONObject();
         
+             jsonConteRetorno.put("viajantes", usuarioviajantes.formatoJsonManejoUsuario());
+             jsonConteRetorno.put("ayudantes", usuarioAyudantes.formatoJsonManejoUsuario());
+             jsonConteRetorno.put("guias de turistas", usuarioGuiasTuristas.formatoJsonManejoUsuario());
+        
+       return  jsonConteRetorno;
         
     }
     //1=tranporte, 2=alojamiento
