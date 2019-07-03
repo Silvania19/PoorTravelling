@@ -22,7 +22,7 @@ public class JsonPersona {
            e.printStackTrace();
        }
    }
-   
+   /// leer el archivo que tenemos guardado de personas
    public static String leer()
    {
        String contenido="";
@@ -36,6 +36,7 @@ public class JsonPersona {
        }
        return contenido;
    }
+   public static 
    
     
 }

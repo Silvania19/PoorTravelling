@@ -1,7 +1,10 @@
 
 package poortravelling;
 import java.util.TreeSet;
-
+import  java.util.Iterator;
+import  org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 public class ListaLugar {
     TreeSet<Lugar> lugares;/// el tree set no permite duplicados por lo tal si ya existe un pais Argentina 
                           ///y el usuarie ingresa Argentina el dato se pisa, quedando un solo Argentina en el TreeSet
@@ -41,9 +44,26 @@ public class ListaLugar {
          }
               return retorno; 
      }
+      // pasaremos la coleccione de lugares que tenemos a un json array    
+    public  JSONArray pasarAJson()throws  JSONException
+    {
+        JSONArray arregloJsonRetorno=new JSONArray();
+        JSONObject objLugar=new JSONObject();
+        Iterator<Lugar> ite= lugares.iterator();
+        while(ite.hasNext())
+        {
+          objLugar= ite.next().getFormatoJsonLugar();
+          arregloJsonRetorno.put(objLugar);
           
-    
+        }
+        return  arregloJsonRetorno;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+    if()   
+    }
    
- 
+  
 }
 

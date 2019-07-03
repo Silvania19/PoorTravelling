@@ -30,16 +30,37 @@ public abstract class Persona {
     }
 // constructor completo, sin lugar, ni putntaje, ni comentaris
 
-    public Persona(String nombre, String apellido, String nroTelefono, Integer edad, String contraseña, Integer id) {
+    public Persona(String nombre, String apellido, String nroTelefono, Integer edad, Integer id) {
         setNombre(nombre);
         setApellido(apellido);
         setNroTelefono(nroTelefono);
         setEdad(edad);
         setPuntaje(0);
-        setContraseña(contraseña);
+        setContraseña("");
         setId(id);
         lugar = new Lugar();
         comentarios = new ArrayList<>();
+    }
+    public void agregarContraseña(String contraseña, String contraseñaRepeticio)
+    {
+        try {
+            if(verificarContraseña(contraseña, contraseñaRepeticio))
+            {
+                setContraseña(contraseña);
+            }
+        } catch (ContraseñaInvalidaException e) {
+            
+        }
+    }
+    public boolean verificarContraseña(String contraseña, String contraseñaRepeticion)throws  ContraseñaInvalidaException
+    {
+        if(contraseña.equals(contraseñaRepeticion))
+        {
+            return  true;
+        }
+        else{
+            throw  new ContraseñaInvalidaException("las contraseñas no son iguales");
+        }
     }
     // constructor copia, copia todo lo que venga en persona1//
 

@@ -1,5 +1,6 @@
 package poortravelling;
-
+///falta verificar tipo 
+//verificar precio
 public class Alojamiento extends ServicioAyudante {
 
     private String tipoAlojamiento;
@@ -10,13 +11,10 @@ public class Alojamiento extends ServicioAyudante {
 
     }
 
-    public Alojamiento(String tipoAlojamiento, Integer disponibilidadCantidad, float precio, String disponibilidadTiempo) throws  PrecioIncorrectoException{
+    public Alojamiento(String tipoAlojamiento, Integer disponibilidadCantidad, String disponibilidadTiempo){
         super(disponibilidadCantidad,  disponibilidadTiempo);
         setTipo(tipoAlojamiento);
-        if(verificarPrecio(precio))
-        {
-            setPrecio(precio);
-        }
+        setPrecio(0);
     }
     
 
@@ -46,7 +44,6 @@ public class Alojamiento extends ServicioAyudante {
 
     @Override
     public boolean modificarPrecio(float precio) throws PrecioIncorrectoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

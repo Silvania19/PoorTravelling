@@ -10,9 +10,9 @@ public class Ayudante extends  Persona{
         super();
         serviAyudante=new ArrayList<>();
     }
-    public Ayudante(String nombre, String apellido, String nroTelefono, Integer edad, String contraseña, Integer id)
+    public Ayudante(String nombre, String apellido, String nroTelefono, Integer edad, Integer id)
     {
-        super(nombre, apellido, nroTelefono, edad, contraseña, id);
+        super(nombre, apellido, nroTelefono, edad, id);
         serviAyudante=new ArrayList<>();
     }
 
@@ -25,6 +25,6 @@ public class Ayudante extends  Persona{
     public void agregarLugarDestino(String pais, String ciudad, String localidad) {
      modificarLugar(pais, ciudad, localidad);
     }
-
+  
   
 }

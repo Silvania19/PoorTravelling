@@ -10,8 +10,8 @@ public  class Viajante extends  Persona{
         tiposervicio= new ArrayList<>();
     }
 
-    public Viajante(String nombre, String apellido, String nroTelefono, Integer edad, String contraseña, Integer id) {
-         super(nombre, apellido, nroTelefono,edad,contraseña, 0);
+    public Viajante(String nombre, String apellido, String nroTelefono, Integer edad, Integer id) {
+         super(nombre, apellido, nroTelefono,edad, 0);
          tiposervicio=new ArrayList<>();
        
     }

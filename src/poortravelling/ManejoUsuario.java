@@ -4,6 +4,9 @@ package poortravelling;
 import java.util.TreeMap;
 import  java.util.Iterator;
 import java.util.Map;
+import  org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 public class ManejoUsuario <t extends Persona>{
     TreeMap<String, t> coleccionUsuario;
@@ -75,7 +78,21 @@ public class ManejoUsuario <t extends Persona>{
         }
         return retorno;
     }
-    public StringBuilder mostrarPorTipoDeServicio(int tipoServicio)
+    // se tranformara la coleccion generica qe tenemos pero que a su vez es una coleccion de alguna clase de que herede de persona
+    //en un jsonArray
+    public JSONArray formatoJsonManejoUsuario()throws  JSONException
+    {
+        JSONArray arregloDePersonaRetorno=new  JSONArray();
+        JSONObject objPersona=new JSONObject();
+            for(Map.Entry<String, t>usuario: coleccionUsuario.entrySet())
+              {
+                   objPersona=usuario.getValue().getFormatoJSON();
+                   arregloDePersonaRetorno.put(objPersona);
+            
+        }
+         return arregloDePersonaRetorno;
+    }
+  /*  public StringBuilder mostrarPorTipoDeServicio(int tipoServicio)
     {
         StringBuilder retorno=new StringBuilder();
         for(Map.Entry<String, t>usuario: coleccionUsuario.entrySet())
@@ -86,6 +103,7 @@ public class ManejoUsuario <t extends Persona>{
             }
         }
         
-    }
+    }*/
+    
   
 }
