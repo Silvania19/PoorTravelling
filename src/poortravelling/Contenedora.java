@@ -29,7 +29,7 @@ public class Contenedora {
     }
 
 
-    public JSONObject formatoJsonContenedora()throws  JSONException
+    public JSONObject jsonContenedora()throws  JSONException
     {
         JSONObject jsonConteRetorno=new JSONObject();
         
@@ -41,9 +41,9 @@ public class Contenedora {
         
     }
     //1=tranporte, 2=alojamiento
-    public StringBuilder buscarAyudanteXTipoServicio(int tipo)
+   /* public StringBuilder buscarAyudanteXTipoServicio(int tipo)
     {
         StringBuilder retorno= new StringBuilder();
         
-    }
+    }*/
 }

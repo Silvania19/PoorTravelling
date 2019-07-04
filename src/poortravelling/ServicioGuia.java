@@ -16,22 +16,17 @@ public class ServicioGuia extends Servicio{
         setLugarTuristico(lugarTuristico);
         setPrecio(0);
     }
-    public String agregarPrecio(float  precio)
-    {
-        String retorno=new String();
-        
-        try {
-            
-            verificarPrecio(precio);
+
+    @Override
+    public void agregarPrecio(float precio) throws PrecioIncorrectoException {
+  
+        if(verificarPrecio(precio))
+        {
             setPrecio(precio);
-            retorno="el precio se agrego correctamebnte";
-        
-        } catch (Exception e) {
-            setPrecio(precio);
-           retorno=e.getMessage();
         }
-        return retorno;
     }
+    
+    
     public void modificarLimitePrecio(float nuevoPrecio)
     {
         LIMITEPRECIOGUIA=nuevoPrecio;
@@ -58,19 +53,11 @@ public class ServicioGuia extends Servicio{
     }
 
     @Override
-    public boolean modificarPrecio(float precio)throws  PrecioIncorrectoException{
-    boolean retorno;
-     if(verificarPrecio(precio))
-     {
-         setPrecio(precio);
-         retorno=true;
-     }else
-     {
-         retorno=false;
-     }
-     return  retorno;
+    public String toString() {
+        return super.toString()+" \n Precio: "+getPrecio()+" \n Lugar turistico: "+getLugarTuristico(); //To change body of generated methods, choose Tools | Templates.
     }
+
+ 
     
-  
   
 }

@@ -7,7 +7,7 @@ public abstract class Servicio {
  private  float precio;
  private String  disponibilidadTiempo;/// disponibilidad de fecha por ejemplo digo que estoy disponible de 23 de junio a 6 de julio
  abstract public boolean verificarPrecio(float precio)throws PrecioIncorrectoException;
- abstract public boolean modificarPrecio(float precio)throws PrecioIncorrectoException;
+ abstract public void agregarPrecio(float precio)throws  PrecioIncorrectoException;
   public Servicio()
   {
       setPrecio(0);
@@ -34,6 +34,11 @@ public abstract class Servicio {
 
     private void setDisponibilidadTiempo(String disponibilidadTiempo) {
         this.disponibilidadTiempo = disponibilidadTiempo;
+    }
+
+    @Override
+    public String toString() {
+    return  "\n Disponiblidad de tiempo: "+getDisponibilidadTiempo();
     }
  
 

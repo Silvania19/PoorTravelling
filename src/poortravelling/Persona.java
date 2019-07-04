@@ -41,16 +41,12 @@ public abstract class Persona {
         lugar = new Lugar();
         comentarios = new ArrayList<>();
     }
-    public void agregarContraseña(String contraseña, String contraseñaRepeticio)
+    public void agregarContraseña(String contraseña, String contraseñaRepeticio)throws ContraseñaInvalidaException
     {
-        try {
-            if(verificarContraseña(contraseña, contraseñaRepeticio))
+        if(verificarContraseña(contraseña, contraseñaRepeticio))
             {
                 setContraseña(contraseña);
             }
-        } catch (ContraseñaInvalidaException e) {
-            
-        }
     }
     public boolean verificarContraseña(String contraseña, String contraseñaRepeticion)throws  ContraseñaInvalidaException
     {

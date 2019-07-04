@@ -2,49 +2,33 @@
 package poortravelling;
 import  java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
 
     
     public static void main(String[] args) {
-      
-    
-      /*final  String constante1AlojamientoAyudante=new String("casa");
-       final  String constante2AlojamientoAyudante=new String("departamento");
-       final  String constante3AlojamientoAyudante=new String("casa campo");
-       final String constante1TransporteAyudante= new String ("auto");
-       final String constante2TransporteAyudante= new String("moto");
-       final String constante3TransporteAyudante= new String("camioneta");
-       final int puntajeMinimo=1;
+  
+     /*final int puntajeMinimo=1;
        final int puntajeMaximo=10;*/
-      
-       ServicioGuia serv= new ServicioGuia();
-        System.out.println(serv.agregarPrecio(678));
         
-       
-       
-       
       Contenedora conte=new Contenedora();
-    GuiaTurista guiaNuevo;
-     /* GuiaTurista guia=new GuiaTurista("flor", "juarez", "67655", 10 ,"hilo" , 86434);
-      GuiaTurista a=new GuiaTurista("marcos ", "cabezas", "78899", 15, "hola", 6743345);
-      conte.agregarUsuarioGuiaTurista(guiaNuevo);
-      conte.agregarUsuarioGuiaTurista(guia);
-      conte.agregarUsuarioGuiaTurista(a);
-        System.out.println(" chicos"+ conte.usuarioGuiasTuristas.mostrarPorRangoDeEdad(15, 20));*/
       Viajante viajanteNuevo;
       Ayudante ayudanteNuevo;
-      ServicioGuia serviGuia;
-      Alojamiento servicioAlojamiento;
-      Transporte serTransporte;
+      GuiaTurista guiaNuevo;
+      ServicioGuia serviGuia=new ServicioGuia();
+      Alojamiento servicioAlojamiento=new Alojamiento();
+      Transporte serTransporte=new Transporte();
       //variables para crear la persona
       String nombre,apellido, nroTelefono, contraseña, contraseñaRepeticion, comentario;
       Integer edad, id;
       float precio;
       Scanner le=new  Scanner(System.in);
       int opcion;
+     
    
-       do {
+      do {
             menu1();
             Scanner lectorMenu = new Scanner(System.in);
             opcion = lectorMenu.nextInt();
@@ -66,12 +50,9 @@ public class Main {
                         switch(opcion)
                         {
                             case 1:
-                                System.out.println("ingrese contraseña");
-                                contraseña=le.nextLine();
-                                System.out.println("ingrese de vuelta su contraseña");
-                                contraseñaRepeticion=le.nextLine();
+                              
                                 viajanteNuevo= new Viajante(nombre, apellido, nroTelefono, edad, 0);
-                                viajanteNuevo.agregarContraseña(contraseña, contraseñaRepeticion);
+                                agregarCotraseñaAlaPersona(viajanteNuevo);
                                 do {
                                     menu1Viajante();
                                     opcion=lectorMenu.nextInt();
@@ -79,7 +60,8 @@ public class Main {
                                         case 1:
                                             do { 
                                                 menuTipoServicioViajante();
-                                                
+                                                opcion=lectorMenu.nextInt();
+                                                switch()
                                             } while (opcion!=0);
                                     }
                                     
@@ -88,7 +70,7 @@ public class Main {
                                 break;
                             case 2: 
                                 ayudanteNuevo=new Ayudante(nombre, apellido, nroTelefono, edad, 0);
-                                System.out.println(ayudanteNuevo.toString());
+                                agregarCotraseñaAlaPersona(ayudanteNuevo);
                                 do {                                    
                                     menu1de2de1();
                                     String tipoDeServicio, disponibilidadTiempo;
@@ -98,31 +80,18 @@ public class Main {
                                     {
                                         case 1:
                                             System.out.println("ingrese datos del servicio transporte");
-                                            System.out.println("ingrese tipo:");
-                                            tipoDeServicio=le.nextLine();
-                                            System.out.println("ingrese cantidad de lugares(espacio) disponibles que tiene");//cantidad de persons
-                                            cantidadDisponible=lectorMenu.nextInt();
-                                            System.out.println("ingrese cuanto tiempo dispone el servicio");
-                                            disponibilidadTiempo=le.nextLine();
-                                            System.out.println("ingrese el precio de su servicio");
-                                            precio=lectorMenu.nextFloat();
-                                            serTransporte= new Transporte(tipoDeServicio, cantidadDisponible, disponibilidadTiempo);
-                                            //agregar precio 
-                                            ayudanteNuevo.agregarServicio(serTransporte);
+                                             cargarServicio(serTransporte);
+                                           ayudanteNuevo.agregarServicio(serTransporte);
                                         case 2 : 
-                                             System.out.println("ingrese datos del servicio transporte");
-                                            System.out.println("ingrese tipo:");
-                                            tipoDeServicio=le.nextLine();
-                                            System.out.println("ingrese cantidad de lugares(espacio) disponibles que tiene");//cantidad de persons
-                                            cantidadDisponible=lectorMenu.nextInt();
-                                            System.out.println("ingrese cuanto tiempo dispone el servicio");
-                                            disponibilidadTiempo=le.nextLine();
-                                            System.out.println("ingrese el precio de su servicio");
-                                            precio=lectorMenu.nextFloat();
-                                            //agregar precio
-                                            servicioAlojamiento=new Alojamiento(tipoDeServicio, cantidadDisponible, disponibilidadTiempo);
+                                             System.out.println("ingrese datos del servicio alojamiento");
+                                              cargarServicio(servicioAlojamiento);
+                                              ayudanteNuevo.agregarServicio(servicioAlojamiento);
                                     }
                                 } while (opcion!=0);
+                                break;
+                              case 3:
+                                guiaNuevo=new GuiaTurista(nombre, apellido, nroTelefono, edad, 0);
+                                agregarCotraseñaAlaPersona(guiaNuevo);
                         }
                         
                     }while(opcion!=0);
@@ -131,7 +100,107 @@ public class Main {
                     
             }
        }while(opcion!=0);
-            
+      
+           
+    }
+    public static  void cargarServicio(Servicio servicio)
+    {
+                    
+     String  tipoDeServicio;
+     Integer cantidadDisponible;
+     String disponibilidadTiempo;
+     Scanner le=new Scanner(System.in);
+     Scanner lectorMenu=new Scanner(System.in);
+     System.out.println("ingrese cantidad de lugares(espacio) disponibles que tiene");//cantidad de persons
+      cantidadDisponible=lectorMenu.nextInt();
+     System.out.println("ingrese cuanto tiempo dispone el servicio");
+     disponibilidadTiempo=le.nextLine();
+     if(servicio instanceof  Transporte)
+     {
+         Transporte trans=(Transporte) servicio;
+         trans=new Transporte(cantidadDisponible, disponibilidadTiempo);
+         agregarTipoServicio(trans);
+         agregarPrecioAservicio(trans);
+     }
+     else if(servicio instanceof Alojamiento)
+     {
+         Alojamiento aloj=(Alojamiento)servicio;
+         aloj=new Alojamiento(cantidadDisponible, disponibilidadTiempo);
+         agregarTipoServicio(aloj);
+         agregarPrecioAservicio(aloj);
+     }
+     else if(servicio instanceof  ServicioGuia)
+     {
+         String lugarTuristico;
+         System.out.println("ingrese lugar turistico (meseo, parque, etc)");
+         lugarTuristico=le.nextLine();
+         ServicioGuia serGuia=(ServicioGuia)servicio;
+         serGuia=new ServicioGuia(lugarTuristico, disponibilidadTiempo);
+         agregarPrecioAservicio(serGuia);
+     }
+
+    }
+    public  static void agregarTipoServicio(IServicioCantidadYTipo ser)
+           
+    { String tipoServicio;
+    Scanner lector=new Scanner(System.in);
+        if(ser instanceof Alojamiento)
+    {
+        Alojamiento alojamiento=(Alojamiento)ser;
+       System.out.println("ingrese el tipo de alojamiento: "+alojamiento.mostrarTiposServicios());
+        tipoServicio=lector.nextLine();
+        try {
+            alojamiento.agregarTipoServicio(tipoServicio);
+        } catch (TipoServicioIncorrectoException ex) {
+            System.out.println(ex.getMessage());
+            agregarTipoServicio(ser);
+       }
+        
+    }
+        else if (ser instanceof  Transporte) {
+            Transporte transporte=(Transporte)ser;
+            System.out.println("ingrese el tipo de transporte: "+transporte.mostrarTiposServicios());
+            tipoServicio=lector.nextLine();
+        try {
+            transporte.agregarTipoServicio(tipoServicio);
+        } catch (TipoServicioIncorrectoException ex) {
+           System.out.println(ex.getMessage());
+            agregarTipoServicio(ser);
+        }
+        }
+
+    }
+    public static void agregarPrecioAservicio(Servicio ser)
+    {
+        float precio;
+        Scanner lector=new Scanner(System.in);
+       
+            try {
+                System.out.println("ingrese el precio");
+                precio=lector.nextFloat();
+                ser.agregarPrecio(precio);
+            } catch (PrecioIncorrectoException e) {
+                System.out.println(e.getMessage());
+                agregarPrecioAservicio(ser);
+       }
+    }
+    public static void agregarCotraseñaAlaPersona( Persona per)
+    {
+        // vamaos a pedir una cotraseña y despues le vamos a pedir que la repita verificaremos si las contraseñas son correctas antes de agregarlo
+        String contraseña, contraseñaRepeticion;
+        Scanner lector=new Scanner(System.in);
+        System.out.println("ingrese la contraseña");
+        contraseña=lector.nextLine();
+        System.out.println("ingrese otra vez la contraseña");
+        contraseñaRepeticion=lector.nextLine();
+        
+        try {
+            per.agregarContraseña(contraseña, contraseñaRepeticion);
+        } catch (ContraseñaInvalidaException ex) {
+            System.out.println(ex.getMessage());
+            agregarCotraseñaAlaPersona(per);
+       }
+        
     }
     
     public static void menu1()
@@ -180,26 +249,6 @@ public class Main {
     {
         
     }
-    /*
-     public static  Servicio ingresarDatosServicio(Servicio ser)
-     { 
-         Scanner lectorString= new Scanner(System.in);
-         Scanner lectorInt=new Scanner(System.in);
-         String tipoDeServicio, disponibilidadTiempo;
-         Integer cantidadDisponible;
-         float precio;
-         System.out.println("ingrese datos del servicio transporte");
-        System.out.println("ingrese tipo:");
-        tipoDeServicio=lectorInt.nextLine();
-         System.out.println("ingrese cantidad de lugares(espacio) disponibles que tiene");//cantidad de persons
-         cantidadDisponible=lectorString.nextInt();
-         System.out.println("ingrese cuanto tiempo dispone el servicio");
-         disponibilidadTiempo=lectorInt.nextLine();
-         System.out.println("ingrese el precio de su servicio");
-         precio=lectorString.nextFloat();
-         ser=new Servicio
-          //agregar precio
-         
-     }*/
+ 
 }
 

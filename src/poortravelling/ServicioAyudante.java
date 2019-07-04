@@ -16,6 +16,11 @@ public abstract  class ServicioAyudante extends Servicio implements IServicioCan
         
         
     }
+@Override
+    public Integer getDisponibilidadCantidad() {
+        return disponibilidadCantidad;
+
+    } 
    
     
 
@@ -24,10 +29,10 @@ public abstract  class ServicioAyudante extends Servicio implements IServicioCan
       disponibilidadCantidad=disponibilidad;  
     }
 
-    @Override
-    public Integer getDisponibilidadCantidad() {
-        return disponibilidadCantidad;
-
+    
+   @Override
+    public String toString() {
+        return super.toString()+"\n Disponibilidad cantidad: "+getDisponibilidadCantidad(); //To change body of generated methods, choose Tools | Templates.
     }
     
     

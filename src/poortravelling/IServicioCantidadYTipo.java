@@ -8,8 +8,11 @@ public interface IServicioCantidadYTipo {
        final String CONTANTE1TRANSPORTEAYUDANTE= new String ("auto");
        final String CONTANTE2TRANSPORTEAYUDANTE= new String("moto");
        final String CONTANTE3TRANSPORTEAYUDANTE= new String("camioneta");
-    void setDiponibilidadCantidad(Integer disponibilidad);
-    void setTipo(String tipo);
-    String getTipo();
-    Integer getDisponibilidadCantidad();
+   public  void setDiponibilidadCantidad(Integer disponibilidad);
+    public void setTipo(String tipo);
+   public  String getTipo();
+   public  Integer getDisponibilidadCantidad();
+   public boolean verificarTipoServicio(String tipoServicio)throws TipoServicioIncorrectoException;
+   public void agregarTipoServicio(String tipoServicio)throws TipoServicioIncorrectoException;
+   public String mostrarTiposServicios(); 
 }

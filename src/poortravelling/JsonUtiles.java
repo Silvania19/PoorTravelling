@@ -8,14 +8,15 @@ import java.nio.file.Paths;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 
-public class JsonPersona {
-   public static void grabar(JSONArray array)
+public class JsonUtiles {
+   public static void grabar(JSONObject obj)
    {
        try {
            FileWriter file= new FileWriter("persona.json");
-           file.write(array.toString());
+           file.write(obj.toString());
            file.flush();
            file.close();
        } catch (Exception e) {
@@ -23,7 +24,7 @@ public class JsonPersona {
        }
    }
    /// leer el archivo que tenemos guardado de personas
-   public static String leer()
+   public static String leerArchivo()
    {
        String contenido="";
        try
@@ -36,7 +37,12 @@ public class JsonPersona {
        }
        return contenido;
    }
-   public static 
+   public static  JSONObject pasarArchivoAJson(String contenido)throws JSONException
+   {
+       JSONObject jsonContenedora=new JSONObject(contenido);
+       return jsonContenedora;
+   }
+    
    
     
 }

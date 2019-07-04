@@ -3,7 +3,7 @@ package poortravelling;
 
 import  java.util.ArrayList;
 public  class Viajante extends  Persona{
- ArrayList<Servicio> tiposervicio;
+ ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios que pueda llegar a teer el viajante
   public Viajante()
     {
         super();
@@ -15,9 +15,7 @@ public  class Viajante extends  Persona{
          tiposervicio=new ArrayList<>();
        
     }
-    public String ToString() {
-        return super.toString();
-    }
+  
     public void agregar(Servicio servicio)
     {
         tiposervicio.add(servicio);
@@ -69,5 +67,16 @@ public  class Viajante extends  Persona{
       }
       return serRetorno;
   } 
-  
+    public String ToString() {
+        return super.toString()+" \n Servicios:  "+mostrarServicios();
+    }
+    public String mostrarServicios()
+    {
+        String retorno=new String();
+        for(Servicio ser: tiposervicio)
+        {
+            retorno+=ser.toString();
+        }
+        return  retorno;
+    }
 }

@@ -59,10 +59,6 @@ public class ListaLugar {
         return  arregloJsonRetorno;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-    if()   
-    }
    
   
 }

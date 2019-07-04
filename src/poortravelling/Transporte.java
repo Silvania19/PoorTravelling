@@ -11,35 +11,15 @@ public Transporte()
     super();
     setTipo("");
 }
-public Transporte (String tipoServicio, Integer disponibilidadCantidad, String disponibilidadTiempo)
+public Transporte ( Integer disponibilidadCantidad, String disponibilidadTiempo)
 {
     super(disponibilidadCantidad, disponibilidadTiempo);
-    setTipo(tipoServicio);
+    setTipo("");
     setPrecio(0);
     
 }
 
- 
-   /* @Override
-  public void  modificarPrecio(float nuevoPrecio)
-{
-  String retorno=new String();
-  boolean modificoOno;
-      try {
-            while( verificarPrecio(nuevoPrecio))
-          
-              setPrecio(nuevoPrecio);
-            modificoOno=true;
-             
-      }
-         
-            catch (PrecioIncorrectoException ex) {
-              retorno=ex.getMessage();
-                modificarPrecio(nuevoPrecio);
-            }
-    return retorno; 
-}
-*/
+
 
 @Override
     public void setTipo(String tipo) {
@@ -68,10 +48,48 @@ public Transporte (String tipoServicio, Integer disponibilidadCantidad, String d
    return retorno;
  }
 
+
     @Override
-    public boolean modificarPrecio(float precio) throws PrecioIncorrectoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void agregarPrecio(float precio) throws PrecioIncorrectoException {
+       if(verificarPrecio(precio))
+        {
+            setPrecio(precio);
+        }
     }
+
+    @Override
+    public boolean verificarTipoServicio(String tipoServicio) throws TipoServicioIncorrectoException {
+        if(tipoServicio.equalsIgnoreCase(CONTANTE1TRANSPORTEAYUDANTE)|| tipoServicio.equalsIgnoreCase(CONTANTE2TRANSPORTEAYUDANTE)|| tipoServicio.equalsIgnoreCase(CONTANTE3TRANSPORTEAYUDANTE))
+        {
+            return true;
+        }
+        else
+        {
+            throw new TipoServicioIncorrectoException(" el tipo de servicio ingresado no correponde a algun tipo de transporte");
+        }
+            }
+
+    @Override
+    public void agregarTipoServicio(String tipoServicio) throws TipoServicioIncorrectoException {
+   if(verificarTipoServicio(tipoServicio))
+   {
+       setTipo(tipoServicio);
+   }
+    }
+
+    @Override
+    public String mostrarTiposServicios() {
+   return "( " +CONTANTE1TRANSPORTEAYUDANTE+ "   "+CONTANTE2TRANSPORTEAYUDANTE+"  "+CONTANTE3TRANSPORTEAYUDANTE+" )";
+   
+           }
+
+    @Override
+    public String toString() {
+        return super.toString()+" \n Precio: "+getPrecio()+" \n Tipo de transporte: "+getTipo(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    
     }
 
    

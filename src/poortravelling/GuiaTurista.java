@@ -24,6 +24,11 @@ public class GuiaTurista extends Persona{
         modificarLugar(pais, ciudad, localidad);
        
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"\n Servicio:"+serGuia.toString(); //To change body of generated methods, choose Tools | Templates.
+    }
    
     
    
