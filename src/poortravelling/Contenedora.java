@@ -5,9 +5,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public class Contenedora {
     ///usaremos un arreglo para cada clase de usuario por que trabajaremos mas independinetes que que en conjuntos 
-    ManejoUsuario<Viajante>usuarioviajantes;
-    ManejoUsuario<Ayudante> usuarioAyudantes;
-    ManejoUsuario<GuiaTurista> usuarioGuiasTuristas;
+   private  ManejoUsuario<Viajante>usuarioviajantes;
+    private ManejoUsuario<Ayudante> usuarioAyudantes;
+    private ManejoUsuario<GuiaTurista> usuarioGuiasTuristas;
   
     public Contenedora()
     {
@@ -21,11 +21,11 @@ public class Contenedora {
     }
     public  void agregarUsuarioAyudante(Ayudante ayudante)
     {
-        usuarioAyudantes.agregarUsuario(ayudante.getContraseña(), ayudante);
+        usuarioAyudantes.agregarUsuario(ayudante.verMiContraseña(), ayudante);
     }
     public void agregarUsuarioGuiaTurista(GuiaTurista guiaTurista)
     {
-        usuarioGuiasTuristas.agregarUsuario(guiaTurista.getContraseña(), guiaTurista);
+        usuarioGuiasTuristas.agregarUsuario(guiaTurista.verMiContraseña(), guiaTurista);
     }
 
 
@@ -40,10 +40,74 @@ public class Contenedora {
        return  jsonConteRetorno;
         
     }
+    //se buscara un viajante por un id, usando la funcion buscar x id de la generica, "manejo de usuario"
+    public Viajante buscarViajantexId(Integer id)throws IdNoExisteExcepcion
+    {
+        Viajante viajante;
+        viajante=usuarioviajantes.buscarXid(id);
+        return viajante;
+    }
+    public Ayudante buscarAyudanteXid(Integer id)throws IdNoExisteExcepcion
+    {
+        Ayudante ayu;
+        ayu=usuarioAyudantes.buscarXid(id);
+        return ayu;
+    }
+    public StringBuilder mostrarAyudantesXRangoDeEdad(int inferior, int superior)
+    {
+        return usuarioAyudantes.mostrarPorRangoDeEdad(inferior, superior);
+    }
+    public StringBuilder mostrarAyudantesXdestino(Lugar luga)
+    {
+        return usuarioAyudantes.mostrarPorDestino(luga);
+    }
+    public StringBuilder mostrarViajanteXRangodeEdad(int inferior, int superior)
+    {
+        return usuarioviajantes.mostrarPorRangoDeEdad(inferior, superior);
+    }
+    public  StringBuilder mostrarViajanteXdestino(Lugar lug)
+    {
+        return  usuarioviajantes.mostrarPorDestino(lug);
+    }
+    public StringBuilder mostrarGuiaXrangoEdad(int inferior, int superior)
+    {
+        return usuarioGuiasTuristas.mostrarPorRangoDeEdad(inferior, superior);
+    }
+    public  StringBuilder mostrarGuiaXdestino(Lugar lug)
+    {
+        return  usuarioGuiasTuristas.mostrarPorDestino(lug);
+    }
+    public GuiaTurista buscarGuiaXID(Integer id)throws IdNoExisteExcepcion
+    {
+        GuiaTurista guia;
+        guia=usuarioGuiasTuristas.buscarXid(id);
+        return guia;
+    }
+    public Viajante mostrarUnViajante(String contraseña)throws  ContraseñaNoExisteException
+    {
+        Viajante viaj=usuarioviajantes.mostrarUnUsuario(contraseña);
+        return  viaj;
+    }
+    public Ayudante mostraUnAyudante(String contraseña)throws  ContraseñaNoExisteException
+    {
+        Ayudante ayu=usuarioAyudantes.mostrarUnUsuario(contraseña);
+        return  ayu;
+    }
+    public  GuiaTurista mostrarUnGuia(String contraseña)throws ContraseñaNoExisteException
+    {
+        GuiaTurista guia=usuarioGuiasTuristas.mostrarUnUsuario(contraseña);
+        return  guia;
+    }
     //1=tranporte, 2=alojamiento
-   /* public StringBuilder buscarAyudanteXTipoServicio(int tipo)
+  /*public StringBuilder buscarAyudanteXTipoServicio(int tipo)
     {
         StringBuilder retorno= new StringBuilder();
+        if(tipo==1)
+        {
+            for()
+            retorno+=
+        }
         
-    }*/
-}
+       
+    } */
+        }

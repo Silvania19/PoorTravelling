@@ -1,9 +1,12 @@
 
 package poortravelling;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 public class GuiaTurista extends Persona{
-    ServicioGuia serGuia;
+    private ServicioGuia serGuia;
 
     public GuiaTurista() {
         super();
@@ -14,23 +17,52 @@ public class GuiaTurista extends Persona{
         super(nombre, apellido, nroTelefono, edad, id);
         serGuia=new ServicioGuia();
     }
-    public void agregarServivio(String lugarTuristico, String disponibilidadTiempo)throws PrecioIncorrectoException
+    public  ServicioGuia getSerGuia()
     {
-        serGuia=new ServicioGuia(lugarTuristico,disponibilidadTiempo);
+        return  serGuia;
     }
-
-    @Override
-    public void agregarLugarDestino(String pais, String ciudad, String localidad) {
-        modificarLugar(pais, ciudad, localidad);
-       
+    public void agregarServivio(ServicioGuia ser)
+    {
+        serGuia=new ServicioGuia(ser.getLugarTuristico());
     }
+    public ServicioGuia servicioDelGuia()
+    {
+        return  getSerGuia();
+    }
+    
 
     @Override
     public String toString() {
         return super.toString()+"\n Servicio:"+serGuia.toString(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean transporte() {
+   return false;
+    }
+
+    @Override
+    public boolean alojamiento() {
+   return  false;
+    }
+
+    @Override
+    public boolean guia() {
+     return  true;
+    }
    
-    
+    @Override
+    public JSONObject getFormatoJSON()   {
+        JSONObject jsonGuaTurista= new JSONObject();
+                
+        try { 
+            jsonGuaTurista= super.getFormatoJSON();
+            jsonGuaTurista.put("guia", serGuia);
+        } catch (JSONException ex) {
+            ex.getMessage();
+        }
+        return  jsonGuaTurista;
+    }
    
     
 }

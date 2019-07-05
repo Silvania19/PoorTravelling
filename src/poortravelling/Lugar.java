@@ -28,7 +28,7 @@ public class Lugar {
         return pais;
     }
 
-    private void setPais(String pais) {
+    public void setPais(String pais) {
         this.pais = pais;
     }
 
@@ -36,7 +36,7 @@ public class Lugar {
         return ciudad;
     }
 
-    private void setCiudad(String ciudad) {
+   public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
 
@@ -44,7 +44,7 @@ public class Lugar {
         return localidad;
     }
 
-    private void setLocalidad(String localidad) {
+    public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
 

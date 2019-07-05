@@ -1,9 +1,12 @@
 
 package poortravelling;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 import  java.util.ArrayList;
 public  class Viajante extends  Persona{
- ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios que pueda llegar a teer el viajante
+private  ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios que pueda llegar a teer el viajante
   public Viajante()
     {
         super();
@@ -21,10 +24,7 @@ public  class Viajante extends  Persona{
         tiposervicio.add(servicio);
     }
 
-    @Override
-    public void agregarLugarDestino(String pais, String ciudad, String localidad) {
-        modificarLugar(pais, ciudad, localidad);
-    }
+ 
        public String mostrar()
        {
            String retorno= new String();
@@ -44,29 +44,7 @@ public  class Viajante extends  Persona{
       retorno=servicio.toString();
       return  retorno;
   }
-  public Servicio buscarServicioPorDisponibilidadDeTiempo(String dispTiempo){
-      Servicio serRetorno = null;
-      for(Servicio serv: tiposervicio)
-      {
-          if (serv instanceof Transporte) {
-              serRetorno= new Transporte();
-              
-          }
-          else if(serv instanceof  Alojamiento)
-          {
-              serRetorno= new Alojamiento();
-          }
-          else
-          {
-            serRetorno= new ServicioGuia();
-          }
-          if(serRetorno.getDisponibilidadTiempo().equals(dispTiempo))
-          {
-              serRetorno=serv;
-          }
-      }
-      return serRetorno;
-  } 
+
     public String ToString() {
         return super.toString()+" \n Servicios:  "+mostrarServicios();
     }
@@ -78,5 +56,150 @@ public  class Viajante extends  Persona{
             retorno+=ser.toString();
         }
         return  retorno;
+    }
+    //para ver si el viajante necesita u tranporte
+    public boolean transporte()
+    {
+        boolean retorno=false;
+        for(Servicio ser: tiposervicio)
+        {
+            if(ser instanceof  Transporte)
+            {
+                retorno=true;
+            }
+        }
+        return retorno;
+    }
+        public boolean alojamiento()
+    {
+        boolean retorno=false;
+        for(Servicio ser: tiposervicio)
+        {
+            if(ser instanceof  Alojamiento)
+            {
+                retorno=true;
+            }
+        }
+        return retorno;
+    }
+        
+    public boolean guia()
+    {
+        boolean retorno=false;
+        for(Servicio ser: tiposervicio)
+        {
+            if(ser instanceof ServicioGuia)
+            {
+                retorno=true;
+            }
+        }
+        return retorno;
+    }
+    public String contratar(Persona p, String tipoServicio)
+    {
+        String retorno=new String();
+        if(p instanceof Ayudante)
+        {
+            Ayudante ayu=(Ayudante)p;
+            Transporte trans;
+            Alojamiento alo;
+            if(tipoServicio.equalsIgnoreCase("transporte"))
+            {
+                for(int i=0; i<ayu.cantDeServicios(); i++){
+                   trans=(Transporte)ayu.buscarServicioPorIdex(i);
+                     if(ayu.transporte()&& trans.isDisponible())
+                     {
+                        retorno= trans.modificarDisponible(false);
+                     }
+                }
+               
+            }
+            
+            if(tipoServicio.equalsIgnoreCase("alojamiento"))
+            {
+                for(int i=0; i<ayu.cantDeServicios();i++)
+                {
+                    alo=(Alojamiento)ayu.buscarServicioPorIdex(i);
+                    if(ayu.alojamiento()&& alo.isDisponible())
+                    {
+                        retorno=alo.modificarDisponible(false);
+                    }
+                }
+            }
+            
+        }
+        else if(p instanceof GuiaTurista)
+        {
+            GuiaTurista guiaTu= (GuiaTurista)p;
+            if(guiaTu.guia()&& guiaTu.servicioDelGuia().isDisponible())
+            {
+                retorno=guiaTu.servicioDelGuia().modificarDisponible(false);
+            }
+        }
+        return  retorno;
+    }
+    public String descontratar(Persona p, String tipoServicio)
+    {
+         String retorno=new String();
+        if(p instanceof Ayudante)
+        {
+            Ayudante ayu=(Ayudante)p;
+            Transporte trans;
+            Alojamiento alo;
+            if(tipoServicio.equalsIgnoreCase("transporte"))
+            {
+                for(int i=0; i<ayu.cantDeServicios(); i++){
+                   trans=(Transporte)ayu.buscarServicioPorIdex(i);
+                     if(ayu.transporte())
+                     {
+                        retorno= trans.modificarDisponible(true);
+                     }
+                }
+               
+            }
+            
+            if(tipoServicio.equalsIgnoreCase("alojamiento"))
+            {
+                for(int i=0; i<ayu.cantDeServicios();i++)
+                {
+                    alo=(Alojamiento)ayu.buscarServicioPorIdex(i);
+                    if(ayu.alojamiento())
+                    {
+                        retorno=alo.modificarDisponible(true);
+                    }
+                }
+            }
+            
+        }
+        else if(p instanceof GuiaTurista)
+        {
+            GuiaTurista guiaTu= (GuiaTurista)p;
+            if(guiaTu.guia()&& guiaTu.servicioDelGuia().isDisponible())
+            {
+                retorno=guiaTu.servicioDelGuia().modificarDisponible(true);
+            }
+        }
+        return  retorno;
+    }
+    public int cantidadElemnetosServicio()
+    {
+        return tiposervicio.size();
+    }
+    public Servicio buscarUnServicio(int i)
+    {
+        return tiposervicio.get(i);
+    }
+       public JSONArray pasarArregloServicioaJson()
+    {
+        JSONArray arraysServicio= new JSONArray();
+        JSONObject objectServicio=new JSONObject();
+        Servicio ser;
+        for(int i=0; i<=tiposervicio.size(); i++)
+        {
+            ser=tiposervicio.get(i);
+            objectServicio= ser.pasarServicioajSONObject();
+            arraysServicio.put(objectServicio);
+        }
+        return arraysServicio;
     }
 }

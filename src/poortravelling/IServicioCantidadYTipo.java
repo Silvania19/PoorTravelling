@@ -1,5 +1,6 @@
 
 package poortravelling;
+import org.json.JSONObject;
 
 public interface IServicioCantidadYTipo {
        final  String CONSTANTE1ALOJAMIENTOAYUDANTE=new String("casa");
@@ -14,5 +15,6 @@ public interface IServicioCantidadYTipo {
    public  Integer getDisponibilidadCantidad();
    public boolean verificarTipoServicio(String tipoServicio)throws TipoServicioIncorrectoException;
    public void agregarTipoServicio(String tipoServicio)throws TipoServicioIncorrectoException;
-   public String mostrarTiposServicios(); 
+   public String mostrarTiposServicios();
+      JSONObject pasarIServicioCantidadYTipo();
 }

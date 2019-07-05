@@ -6,7 +6,7 @@ import  org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public class ListaLugar {
-    TreeSet<Lugar> lugares;/// el tree set no permite duplicados por lo tal si ya existe un pais Argentina 
+   private TreeSet<Lugar> lugares;/// el tree set no permite duplicados por lo tal si ya existe un pais Argentina 
                           ///y el usuarie ingresa Argentina el dato se pisa, quedando un solo Argentina en el TreeSet
    public ListaLugar()
            
@@ -57,6 +57,13 @@ public class ListaLugar {
           
         }
         return  arregloJsonRetorno;
+    }
+    public JSONObject JsonlistaLugar() throws JSONException
+    {
+        JSONObject jsonListLugar= new JSONObject();
+    
+            jsonListLugar.put("lugares", pasarAJson());
+        return  jsonListLugar;
     }
 
    

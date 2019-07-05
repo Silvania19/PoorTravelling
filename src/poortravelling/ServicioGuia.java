@@ -1,6 +1,6 @@
 
 package poortravelling;
-
+import org.json.JSONObject;
 public class ServicioGuia extends Servicio{
     public static  float LIMITEPRECIOGUIA=244;
     private String lugarTuristico;// este especifica a donde el guia va a levar al viajante. ejemplo rio, museo o lo que se le de la gana.
@@ -11,8 +11,8 @@ public class ServicioGuia extends Servicio{
         setLugarTuristico("");
     }
     //precio sera iniciado en cero, habara una funcion especial para iniciar el precio 
-    public ServicioGuia(String lugarTuristico, String disponibilidadTiempo){
-        super(disponibilidadTiempo);
+    public ServicioGuia(String lugarTuristico){
+        super();
         setLugarTuristico(lugarTuristico);
         setPrecio(0);
     }
@@ -56,8 +56,20 @@ public class ServicioGuia extends Servicio{
     public String toString() {
         return super.toString()+" \n Precio: "+getPrecio()+" \n Lugar turistico: "+getLugarTuristico(); //To change body of generated methods, choose Tools | Templates.
     }
+    
 
- 
+    @Override
+    public JSONObject pasarServicioajSONObject() {
+        JSONObject jsonServicioGuia= new JSONObject();
+        try {
+            jsonServicioGuia=super.pasarServicioajSONObject();
+            jsonServicioGuia.put("lugar Turistico", lugarTuristico);
+            jsonServicioGuia.put("limite precio", LIMITEPRECIOGUIA);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return  jsonServicioGuia;
+    }
     
   
 }

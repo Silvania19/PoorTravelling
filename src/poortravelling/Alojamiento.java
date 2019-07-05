@@ -1,6 +1,10 @@
 package poortravelling;
 ///falta verificar tipo 
 //verificar precio
+
+import org.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONArray;
 public class Alojamiento extends ServicioAyudante {
 
     private String tipoAlojamiento;
@@ -11,8 +15,8 @@ public class Alojamiento extends ServicioAyudante {
 
     }
 
-    public Alojamiento(Integer disponibilidadCantidad, String disponibilidadTiempo){
-        super(disponibilidadCantidad,  disponibilidadTiempo);
+    public Alojamiento(Integer disponibilidadCantidad){
+        super(disponibilidadCantidad);
         setTipo("");
         setPrecio(0);
     }
@@ -87,7 +91,20 @@ public class Alojamiento extends ServicioAyudante {
         return super.toString()+" \n Precio: "+getPrecio()+" \n Tipo de alojamiento: "+getTipo(); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
+
+
+    @Override
+    public JSONObject pasarIServicioCantidadYTipo() {
+        JSONObject jsonAlojamiento= new JSONObject();
+        try {
+           jsonAlojamiento= super.pasarServicioajSONObject();
+           jsonAlojamiento.put("tipo de alojamiento", tipoAlojamiento);
+           jsonAlojamiento.put("limite de precio", PRECIOLIMITEALOJAMIENTO);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return  jsonAlojamiento;
+   }
     
 
 }

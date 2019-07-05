@@ -1,6 +1,6 @@
 
 package poortravelling;
-
+import org.json.JSONObject;
 public abstract  class ServicioAyudante extends Servicio implements IServicioCantidadYTipo{
      private Integer disponibilidadCantidad;
 
@@ -9,8 +9,8 @@ public abstract  class ServicioAyudante extends Servicio implements IServicioCan
        super();
        setDiponibilidadCantidad(0);
    }
-    public ServicioAyudante(Integer disponibilidadCantidad,  String disponibilidadTiempo) {
-       super(disponibilidadTiempo);
+    public ServicioAyudante(Integer disponibilidadCantidad) {
+       super();
         setDiponibilidadCantidad(disponibilidadCantidad);
         
         
@@ -36,5 +36,15 @@ public abstract  class ServicioAyudante extends Servicio implements IServicioCan
     }
     
     
-
+    @Override
+    public JSONObject pasarServicioajSONObject() {
+        JSONObject jsonServicioAyudante= new JSONObject();
+        try {
+            jsonServicioAyudante=super.pasarServicioajSONObject();
+            jsonServicioAyudante.put("disponibilidad de cantidad", disponibilidadCantidad);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return  jsonServicioAyudante;
+    }
 }

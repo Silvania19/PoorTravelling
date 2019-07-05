@@ -1,6 +1,7 @@
 
 package poortravelling;
 
+import org.json.JSONObject;
 
 public class Transporte extends ServicioAyudante implements IServicioCantidadYTipo{
     
@@ -11,9 +12,9 @@ public Transporte()
     super();
     setTipo("");
 }
-public Transporte ( Integer disponibilidadCantidad, String disponibilidadTiempo)
+public Transporte ( Integer disponibilidadCantidad)
 {
-    super(disponibilidadCantidad, disponibilidadTiempo);
+    super(disponibilidadCantidad);
     setTipo("");
     setPrecio(0);
     
@@ -29,8 +30,13 @@ public Transporte ( Integer disponibilidadCantidad, String disponibilidadTiempo)
     public String getTipo() {
      return  tipoTransporte;
     }
-   
 
+    @Override
+    public boolean isDisponible() {
+        return super.isDisponible(); 
+    }
+   
+ 
     @Override
    public boolean verificarPrecio(float  precio) throws PrecioIncorrectoException
  {
@@ -88,6 +94,18 @@ public Transporte ( Integer disponibilidadCantidad, String disponibilidadTiempo)
         return super.toString()+" \n Precio: "+getPrecio()+" \n Tipo de transporte: "+getTipo(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public JSONObject pasarIServicioCantidadYTipo() {
+        JSONObject jsonTransporte= new JSONObject();
+        try {
+            jsonTransporte=super.pasarServicioajSONObject();
+            jsonTransporte.put("Tipo de transporte", tipoTransporte);
+            jsonTransporte.put("limite de precio", PRECIOLIMITETRAMSPORTE);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return jsonTransporte;
+    }
     
     
     }
