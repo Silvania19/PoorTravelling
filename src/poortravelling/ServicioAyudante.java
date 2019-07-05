@@ -1,5 +1,6 @@
 
 package poortravelling;
+import org.json.JSONException;
 import org.json.JSONObject;
 public abstract  class ServicioAyudante extends Servicio implements IServicioCantidadYTipo{
      private Integer disponibilidadCantidad;
@@ -37,14 +38,12 @@ public abstract  class ServicioAyudante extends Servicio implements IServicioCan
     
     
     @Override
-    public JSONObject pasarServicioajSONObject() {
+    public JSONObject pasarServicioajSONObject() throws JSONException{
         JSONObject jsonServicioAyudante= new JSONObject();
-        try {
+       
             jsonServicioAyudante=super.pasarServicioajSONObject();
             jsonServicioAyudante.put("disponibilidad de cantidad", disponibilidadCantidad);
-        } catch (Exception e) {
-            e.getMessage();
-        }
+      
         return  jsonServicioAyudante;
     }
 }

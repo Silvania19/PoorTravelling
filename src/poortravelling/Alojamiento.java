@@ -93,7 +93,7 @@ public class Alojamiento extends ServicioAyudante {
     
 
 
-    @Override
+  /*  @Override
     public JSONObject pasarIServicioCantidadYTipo() {
         JSONObject jsonAlojamiento= new JSONObject();
         try {
@@ -105,6 +105,15 @@ public class Alojamiento extends ServicioAyudante {
         }
         return  jsonAlojamiento;
    }
-    
+    */
+
+    @Override
+    public JSONObject pasarServicioajSONObject() throws JSONException {
+        JSONObject obj=new JSONObject();
+      obj= super.pasarServicioajSONObject(); //To change body of generated methods, choose Tools | Templates.
+       obj=obj.put("tipo de alojamiento", tipoAlojamiento);
+       obj=obj.put("precio", getPrecio());
+       return  obj;
+    }
 
 }

@@ -189,7 +189,7 @@ private  ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios qu
     {
         return tiposervicio.get(i);
     }
-       public JSONArray pasarArregloServicioaJson()
+       public JSONArray pasarArregloServicioaJson()throws  JSONException
     {
         JSONArray arraysServicio= new JSONArray();
         JSONObject objectServicio=new JSONObject();
@@ -202,4 +202,15 @@ private  ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios qu
         }
         return arraysServicio;
     }
+
+    @Override
+    public JSONObject getFormatoJSON() throws JSONException {
+       JSONObject obj=new JSONObject();
+        obj=super.getFormatoJSON();
+        obj.put("servicios", pasarArregloServicioaJson());
+        return  obj;
+        
+        
+    }
+       
 }

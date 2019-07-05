@@ -1,6 +1,7 @@
 
 package poortravelling;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Transporte extends ServicioAyudante implements IServicioCantidadYTipo{
@@ -94,16 +95,16 @@ public Transporte ( Integer disponibilidadCantidad)
         return super.toString()+" \n Precio: "+getPrecio()+" \n Tipo de transporte: "+getTipo(); //To change body of generated methods, choose Tools | Templates.
     }
 
+
+
     @Override
-    public JSONObject pasarIServicioCantidadYTipo() {
+    public JSONObject pasarServicioajSONObject()throws  JSONException{
         JSONObject jsonTransporte= new JSONObject();
-        try {
+        
             jsonTransporte=super.pasarServicioajSONObject();
             jsonTransporte.put("Tipo de transporte", tipoTransporte);
-            jsonTransporte.put("limite de precio", PRECIOLIMITETRAMSPORTE);
-        } catch (Exception e) {
-            e.getMessage();
-        }
+            jsonTransporte.put("precio", getPrecio());
+      
         return jsonTransporte;
     }
     

@@ -55,10 +55,10 @@ public abstract class Servicio {
     public String toString() {
         return "";
     }
-   public JSONObject pasarServicioajSONObject()
+   public JSONObject pasarServicioajSONObject() throws  JSONException
  {
      JSONObject jsonServicio= new JSONObject();
-  
+      jsonServicio.put("disponible", disponible);
      return jsonServicio;
  }
 }

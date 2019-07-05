@@ -1,6 +1,7 @@
 
 package poortravelling;
 import  java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -82,25 +83,22 @@ public class Ayudante extends  Persona{
     @Override
     public JSONObject getFormatoJSON() throws JSONException {
        JSONObject jsonAyudante= new JSONObject();
-        
-        try {
+       
             jsonAyudante= super.getFormatoJSON();
-            jsonAyudante.put("cantidad y tipo", serviAyudante);
-        } catch (Exception e) {
-            e.getMessage();
-        }
+            jsonAyudante.put("servicios", pasarArregloServicioaJson());
+      
         return  jsonAyudante;
     }
   
-    public JSONArray pasarArregloServicioaJson()
+   public JSONArray pasarArregloServicioaJson()throws  JSONException
     {
         JSONArray arraysServicio= new JSONArray();
         JSONObject objectServicio=new JSONObject();
-        IServicioCantidadYTipo serCYT;
+        Servicio ser;
         for(int i=0; i<=serviAyudante.size(); i++)
         {
-            serCYT=serviAyudante.get(i);
-            objectServicio= serCYT.pasarIServicioCantidadYTipo();
+            ser=(Servicio)serviAyudante.get(i);
+            objectServicio= ser.pasarServicioajSONObject();
             arraysServicio.put(objectServicio);
         }
         return arraysServicio;

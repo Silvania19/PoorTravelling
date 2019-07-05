@@ -52,15 +52,13 @@ public class GuiaTurista extends Persona{
     }
    
     @Override
-    public JSONObject getFormatoJSON()   {
+    public JSONObject getFormatoJSON() throws  JSONException{
         JSONObject jsonGuaTurista= new JSONObject();
                 
-        try { 
+  
             jsonGuaTurista= super.getFormatoJSON();
-            jsonGuaTurista.put("guia", serGuia);
-        } catch (JSONException ex) {
-            ex.getMessage();
-        }
+            jsonGuaTurista.put("servicios", serGuia.pasarServicioajSONObject());
+   
         return  jsonGuaTurista;
     }
    

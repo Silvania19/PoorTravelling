@@ -28,9 +28,9 @@ public class ListaLugar {
        
     }
     
-    public void agregarLugar(Lugar lugar )
+    public boolean agregarLugar(Lugar lugar )
     {
-        lugares.add(lugar);
+        return lugares.add(lugar);
         
     }
 
@@ -66,6 +66,7 @@ public class ListaLugar {
         return  jsonListLugar;
     }
 
+ 
    
   
 }

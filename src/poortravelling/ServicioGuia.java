@@ -1,5 +1,6 @@
 
 package poortravelling;
+import org.json.JSONException;
 import org.json.JSONObject;
 public class ServicioGuia extends Servicio{
     public static  float LIMITEPRECIOGUIA=244;
@@ -59,15 +60,13 @@ public class ServicioGuia extends Servicio{
     
 
     @Override
-    public JSONObject pasarServicioajSONObject() {
+    public JSONObject pasarServicioajSONObject()throws JSONException{
         JSONObject jsonServicioGuia= new JSONObject();
-        try {
+       
             jsonServicioGuia=super.pasarServicioajSONObject();
             jsonServicioGuia.put("lugar Turistico", lugarTuristico);
-            jsonServicioGuia.put("limite precio", LIMITEPRECIOGUIA);
-        } catch (Exception e) {
-            e.getMessage();
-        }
+            jsonServicioGuia.put(" precio", getPrecio());
+    
         return  jsonServicioGuia;
     }
     

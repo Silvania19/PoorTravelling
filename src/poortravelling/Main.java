@@ -11,10 +11,40 @@ public class Main {
     
     public static void main(String[] args) {
   
-     /*final int puntajeMinimo=1;
-       final int puntajeMaximo=10;*/
-        
-      Contenedora conte=new Contenedora();
+    
+        Contenedora conte=new Contenedora();
+        Servicio serV1, serv2, serA; 
+        Lugar LV1, LV2, LA, LG;
+        ListaLugar lisLugar=new ListaLugar();
+        int id=1;
+        Viajante viajante1=new Viajante("silvania", "ortega", "345567344", 19, 1);
+        Viajante v2=new Viajante("flor", "juarez ", "23456551", 20, 2);
+        Ayudante ayu1=new Ayudante("marcos", "cabezas", "2334556", 21, 3);
+        GuiaTurista guia=new GuiaTurista("liz", "Perez", "375482344", 3, 4);
+        LV1=new Lugar("argentina", "buenos aires", "mar del plata");
+        LV2=new Lugar("argentina", "buenos aires ", "pinamar");
+        LA=new Lugar("argentina", "buenos aires " , " mar del plata");
+        LG=new Lugar("argentina", "buenos aires "," pinamar");
+        serV1=new Transporte(12);
+        serv2=new Alojamiento(3);
+        serA= new Transporte(2);
+        Alojamiento sera=new Alojamiento(4);
+        ServicioGuia serG=new ServicioGuia("museo");
+        viajante1.agregar(serV1);
+        v2.agregar(serv2);
+        ayu1.agregarServicio(sera);
+        guia.agregarServivio(serG);
+    /* conte.agreagarUsuarioViajante(viajante1);
+        conte.agreagarUsuarioViajante(v2);
+        conte.agregarUsuarioAyudante(ayu1);
+        conte.agregarUsuarioGuiaTurista(guia);
+        System.out.println("");
+       lisLugar.agregarLugar(LG);
+        lisLugar.agregarLugar(LA);
+        lisLugar.agregarLugar(LV1);
+        lisLugar.agregarLugar(LV2);
+  
+      */
       ListaLugar listaLugares=new ListaLugar();
       Viajante viajanteNuevo=new Viajante();
       Ayudante ayudanteNuevo=new Ayudante();
@@ -27,21 +57,12 @@ public class Main {
       Viajante viajanteBuscado=new Viajante();
       //variables para crear la persona
       String nombre,apellido, nroTelefono, contraseña, contraseñaRepeticion, comentario;
-      Integer edad, id;
+      Integer edad;
       float precio;
       Scanner le=new  Scanner(System.in);
       int opcion;
-       JsonUtilesContenedora jsonConte= new JsonUtilesContenedora();
+     
        JSONObject jo=new JSONObject();
-       jsonConte.grabarContenedora(jo);
-        try {
-             jo=conte.jsonContenedora();
-        } catch (Exception e) {
-            System.out.println("Problemas bb aborta el programa");
-        }
-        
-        System.out.println(jo.toString());
-      conte=jsonConte.leer();
       
        
       do {
@@ -67,7 +88,7 @@ public class Main {
                         {
                             case 1:
                               
-                                viajanteNuevo= new Viajante(nombre, apellido, nroTelefono, edad, 0);
+                                viajanteNuevo= new Viajante(nombre, apellido, nroTelefono, edad, id+1);
                                 agregarCotraseñaAlaPersona(viajanteNuevo);
                                 do {
                                     menu1ViajanteAyudante();
@@ -94,6 +115,9 @@ public class Main {
                                                         cargarServicio(serviGuia);
                                                         viajanteNuevo.agregar(serviGuia);
                                                         break;
+                                                        case 4:
+                                                            opcion=1;
+                                                            break;
                                                 
                                                 }
                                             } while (opcion!=0);
@@ -104,13 +128,16 @@ public class Main {
                                             viajanteNuevo.agregarLugarDestino(lugar);
                                             listaLugares.agregarLugar(lugar);
                                             break;
+                                        case 3:
+                                            opcion=1;
+                                            break;
                                     }
                                     break;
                                 } while (opcion!=0);
                                 conte.agreagarUsuarioViajante(viajanteNuevo);
                                 break;
                             case 2: 
-                                ayudanteNuevo=new Ayudante(nombre, apellido, nroTelefono, edad, 0);
+                                ayudanteNuevo=new Ayudante(nombre, apellido, nroTelefono, edad, id+1);
                                 agregarCotraseñaAlaPersona(ayudanteNuevo);
                                 do{
                                     menu1ViajanteAyudante();
@@ -149,7 +176,7 @@ public class Main {
                                 }while(opcion!=0);
                                 break;
                               case 3:
-                               guiaNuevo=new GuiaTurista(nombre, apellido, nroTelefono, edad, 0);
+                               guiaNuevo=new GuiaTurista(nombre, apellido, nroTelefono, edad, id+1);
                                agregarCotraseñaAlaPersona(guiaNuevo);
                                System.out.println("ingrese datos del servicio guia");
                                cargarServicio(serviGuia);
@@ -161,7 +188,8 @@ public class Main {
                                listaLugares.agregarLugar(lugar);
                                conte.agregarUsuarioGuiaTurista(guiaNuevo);
                               break;
-                              case 0: 
+                              case 4: 
+                                  opcion=1;
                                   break;
                         }
                         
@@ -394,9 +422,7 @@ public class Main {
         
             break;
        }while(opcion!=0);
-      
-         jsonConte.grabarContenedora(jo);   
-    }
+          }
     public static  void menuGuiaViajante()
     {
         System.out.println("1-comentar a un viajante");
@@ -618,7 +644,7 @@ public class Main {
     {
         System.out.println("1-Transporte");
         System.out.println("2-Alojamiento");
-        System.out.println("0-Salir");
+        System.out.println("3-volver");
     }
     // para saber que tipo de servicio necesita el viajante, para crear el objeto que le corresponda
     public static  void menuTipoServicioViajante()
@@ -626,6 +652,7 @@ public class Main {
          System.out.println("1-Transporte");
         System.out.println("2-Alojamiento");
         System.out.println("3-Guia turismo");
+        System.out.println("4-volver");
         
     }
     //este menu se mostrara despues de que se cree un objeto viajante. y se agregue este al arreglo
@@ -633,29 +660,33 @@ public class Main {
     {
         System.out.println("1-Ingresar datos del servicio ");
         System.out.println("2- ingresar destino a vijar");
-        System.out.println("0-salir");
+        System.out.println("3-volver");
         
     }
    public static  void menuViajanteCO()
    {
        System.out.println("1- ayudante");
        System.out.println("2- guia");
+       System.out.println("3-volver");
    }
     public static void menuEjecutableViajante1Ayudante()
     {
         System.out.println("1-Buscar un ayudantes por destino.");
        System.out.println("2-Buscar ayudantes en  un determinado rango de edad");
+        System.out.println("3-volver");
     } 
     public static void menuEjecutableViajante1Guia()
     {
         System.out.println("1-Buscar un guias por destino.");
         System.out.println("2-Buscar gias en  un determinado rango de edad");
+        System.out.println("3-volver");
        
     }
     public static  void menuPrimeroviajanteEjecutable()
     {
         System.out.println("1- Buscar ayudantes.");
         System.out.println("2- Buscar guias de turistas");
+        System.out.println("3-volver");
     }
 
  

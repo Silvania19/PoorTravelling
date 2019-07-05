@@ -52,7 +52,7 @@ public class JsonUtilesContenedora {
            for(i=0; i<jo.getJSONArray("ayudantes").getJSONArray(0).length();i++)
            {
                 Ayudante a=new Ayudante();
-                a.setNombre(jo.getJSONArray("ayudantes").getJSONArray(0).getJSONObject(i).getString("nombre"));
+               /// a.setNombre(jo.getJSONObject("ayudantes").getJSONArray().getString("nombre"));
                 a.setApellido(jo.getJSONArray("ayudantes").getJSONArray(0).getJSONObject(i).getString("apellido"));
                 a.setNroTelefono(jo.getJSONArray("ayudantes").getJSONArray(0).getJSONObject(i).getString("nro de telefono"));
                 a.setContraseña(jo.getJSONArray("ayudantes").getJSONArray(0).getJSONObject(i).getString("contraseña"));

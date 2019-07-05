@@ -53,27 +53,29 @@ public class Contenedora {
         ayu=usuarioAyudantes.buscarXid(id);
         return ayu;
     }
-    public StringBuilder mostrarAyudantesXRangoDeEdad(int inferior, int superior)
+    public String mostrarAyudantesXRangoDeEdad(int inferior, int superior)
     {
-        return usuarioAyudantes.mostrarPorRangoDeEdad(inferior, superior);
+        String retorno=new String();
+        retorno=usuarioAyudantes.mostrarPorRangoDeEdad(inferior, superior);
+        return retorno ;
     }
-    public StringBuilder mostrarAyudantesXdestino(Lugar luga)
+    public String mostrarAyudantesXdestino(Lugar luga)
     {
         return usuarioAyudantes.mostrarPorDestino(luga);
     }
-    public StringBuilder mostrarViajanteXRangodeEdad(int inferior, int superior)
+    public String mostrarViajanteXRangodeEdad(int inferior, int superior)
     {
         return usuarioviajantes.mostrarPorRangoDeEdad(inferior, superior);
     }
-    public  StringBuilder mostrarViajanteXdestino(Lugar lug)
+    public  String mostrarViajanteXdestino(Lugar lug)
     {
         return  usuarioviajantes.mostrarPorDestino(lug);
     }
-    public StringBuilder mostrarGuiaXrangoEdad(int inferior, int superior)
+    public String mostrarGuiaXrangoEdad(int inferior, int superior)
     {
         return usuarioGuiasTuristas.mostrarPorRangoDeEdad(inferior, superior);
     }
-    public  StringBuilder mostrarGuiaXdestino(Lugar lug)
+    public  String mostrarGuiaXdestino(Lugar lug)
     {
         return  usuarioGuiasTuristas.mostrarPorDestino(lug);
     }
@@ -98,16 +100,6 @@ public class Contenedora {
         GuiaTurista guia=usuarioGuiasTuristas.mostrarUnUsuario(contraseña);
         return  guia;
     }
-    //1=tranporte, 2=alojamiento
-  /*public StringBuilder buscarAyudanteXTipoServicio(int tipo)
-    {
-        StringBuilder retorno= new StringBuilder();
-        if(tipo==1)
-        {
-            for()
-            retorno+=
-        }
-        
-       
-    } */
+
+    
         }

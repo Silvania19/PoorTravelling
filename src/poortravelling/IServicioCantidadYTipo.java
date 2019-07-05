@@ -16,5 +16,5 @@ public interface IServicioCantidadYTipo {
    public boolean verificarTipoServicio(String tipoServicio)throws TipoServicioIncorrectoException;
    public void agregarTipoServicio(String tipoServicio)throws TipoServicioIncorrectoException;
    public String mostrarTiposServicios();
-      JSONObject pasarIServicioCantidadYTipo();
+      
 }

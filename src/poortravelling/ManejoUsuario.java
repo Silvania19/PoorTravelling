@@ -17,7 +17,7 @@ public class ManejoUsuario<t extends Persona> {
     ///despues poner booleam para que retorne true si es que agrego el usuario
 
     public void agregarUsuario(String contraseña, t usuario) {
-        coleccionUsuario.put(contraseña, usuario);
+          coleccionUsuario.put(contraseña, usuario);
     }
 
     public boolean existeUsuario(String contraseña) {
@@ -59,23 +59,23 @@ public class ManejoUsuario<t extends Persona> {
         return retorno;
     }
 
-    public StringBuilder mostrarPorRangoDeEdad(int inferior, int superior) {
-        StringBuilder retorno = new StringBuilder();
+    public String mostrarPorRangoDeEdad(int inferior, int superior) {
+        String retorno = new String();
 
         for (Map.Entry< String, t> usuario : coleccionUsuario.entrySet()) {
             if (usuario.getValue().getEdad() >= inferior && usuario.getValue().getEdad() <= superior) {
-                retorno.append(usuario.getValue().toString());
+                retorno+=usuario.getValue().toString();
             }
 
         }
         return retorno;
     }
 
-    public StringBuilder mostrarPorDestino(Lugar destino) {
-        StringBuilder retorno = new StringBuilder();
+    public String mostrarPorDestino(Lugar destino) {
+        String retorno = new String();
         for (Map.Entry<String, t> usuario : coleccionUsuario.entrySet()) {
             if (usuario.getValue().getLugar().equals(destino)) {
-                retorno.append(usuario.getValue().toString());
+                retorno+=(usuario.getValue().toString());
             }
         }
         return retorno;
@@ -94,26 +94,7 @@ public class ManejoUsuario<t extends Persona> {
         return arregloDePersonaRetorno;
     }
 
-    //1=tranporte, 2=alojamiento
-    public StringBuilder mostrarPorTipoDeServicio(int tipoServicio) {
-        StringBuilder retorno = new StringBuilder();
-        for (Map.Entry<String, t> usuario : coleccionUsuario.entrySet()) {
-            if (tipoServicio == 1) {
-                if (usuario instanceof Ayudante) {
-                    Ayudante ayu = (Ayudante) usuario;
-                    for (int i = 0; i < ayu.cantDeServicios(); i++) {
-                        if (ayu.transporte()) {
-                            Alojamiento alo = (Alojamiento) ayu.buscarServicioPorIdex(i);
-                            if (alo.isDisponible()) {
-                                retorno.append(ayu.toString());
-                            }
-                        }
-                    }
-                }
-
-            }
-        }
-return  retorno;
-    }
+   
+    
 }
 

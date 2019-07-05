@@ -39,7 +39,8 @@ public class Comentario{
    public JSONObject cambiarComentarioAJson() throws JSONException
    {
        JSONObject obj=new JSONObject();
-       obj.put(nombre, comentario);
+       obj.put("nombre", nombre);
+       obj.put("comentario", comentario);
        return  obj;
    }
     
