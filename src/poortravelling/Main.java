@@ -23,6 +23,8 @@ public class Main {
       Alojamiento servicioAlojamiento=new Alojamiento();
       Transporte serTransporte=new Transporte();
       Lugar lugar=new Lugar();
+      Comentario comentarioNuevo;
+      Viajante viajanteBuscado=new Viajante();
       //variables para crear la persona
       String nombre,apellido, nroTelefono, contraseña, contraseñaRepeticion, comentario;
       Integer edad, id;
@@ -92,8 +94,7 @@ public class Main {
                                                         cargarServicio(serviGuia);
                                                         viajanteNuevo.agregar(serviGuia);
                                                         break;
-                                                    case 0:
-                                                            break;
+                                                
                                                 }
                                             } while (opcion!=0);
                                             
@@ -159,6 +160,8 @@ public class Main {
                                 guiaNuevo.agregarLugarDestino(lugar);
                                listaLugares.agregarLugar(lugar);
                                conte.agregarUsuarioGuiaTurista(guiaNuevo);
+                              break;
+                              case 0: 
                                   break;
                         }
                         
@@ -168,8 +171,8 @@ public class Main {
                          Lugar lug=new Lugar();
                          int inferior, superior, numeroUsuario;
                          String tipoSer=new String();
-                                 
                          Ayudante ayudanteContratado=new Ayudante();
+                         GuiaTurista guiaContratado=new GuiaTurista();
            do {
                menu1de1();
                opcion=lectorMenu.nextInt();
@@ -177,16 +180,37 @@ public class Main {
             {   case 1:
                 verficarContraseñaExiste(conte, viajanteNuevo);
                 System.out.println(viajanteNuevo.toString());
-                do { 
-                    menuEjecutableViajante1();
+                do {
+                    System.out.println("necesita un: ");
+                    menuViajanteCO();
+                    opcion=lectorMenu.nextInt();
+                    switch(opcion)
+                    {
+                        case 1:
+                            do{
+                                menuEjecutableViajante1Ayudante();
                      opcion=lectorMenu.nextInt();
                      switch(opcion){
                          case 1:
                              cargarUnLugar(lugar);
                              System.out.println(conte.mostrarAyudantesXdestino(lug));
                              buscarUnaPersonaXid(conte, ayudanteContratado);
-                             tipoSer=tipoServicioContratar();
-                             viajanteNuevo.contratar(ayudanteContratado, tipoSer);
+                             do {                                 
+                                 menuViajanteComentarOcontratar();
+                                 opcion=lectorMenu.nextInt();
+                                 switch(opcion)
+                                 {
+                                     case 1:
+                                         tipoSer=tipoServicioContratar();
+                                         System.out.println(viajanteNuevo.contratar(ayudanteContratado, tipoSer));
+                                     case 2:
+                                         System.out.println("ingrese el comentario:   ");
+                                         comentario=le.nextLine();
+                                        comentarioNuevo= viajanteNuevo.comentar(comentario);
+                                         ayudanteContratado.agregarComentario(comentarioNuevo);
+                                 }
+                             } while (opcion!=0);
+                             
                              break;
                          case 2:
                              System.out.println("ingrese la edad minima");
@@ -196,12 +220,169 @@ public class Main {
                              System.out.println("\n ayudantes con edad minima de "+inferior+" y edad maxima de "+superior+"\n");
                              System.out.println(conte.mostrarAyudantesXRangoDeEdad(inferior, superior));
                              buscarUnaPersonaXid(conte, ayudanteContratado);
-                             tipoSer=tipoServicioContratar();
-                             viajanteNuevo.contratar(ayudanteContratado, tipoSer);
+                             do {                                 
+                                 menuViajanteComentarOcontratar();
+                                 opcion=lectorMenu.nextInt();
+                                 switch(opcion)
+                                 {
+                                     case 1:
+                                         tipoSer=tipoServicioContratar();
+                                         System.out.println(viajanteNuevo.contratar(ayudanteContratado, tipoSer));
+                                     case 2:
+                                         System.out.println("ingrese el comentario:   ");
+                                         comentario=le.nextLine();
+                                        comentarioNuevo= viajanteNuevo.comentar(comentario);
+                                         ayudanteContratado.agregarComentario(comentarioNuevo);
+                                 }
+                             } while (opcion!=0);
+                             
                      }
+                            }while(opcion!=0);
+                        
+                        
+                        case 2:
+                            do {  
+                                menuEjecutableViajante1Guia();
+                                opcion=lectorMenu.nextInt();
+                                switch(opcion)
+                                {
+                                    case 1: 
+                                        cargarUnLugar(lugar);
+                                        System.out.println(conte.mostrarGuiaXdestino(lug));
+                                        buscarUnaPersonaXid(conte, guiaContratado);
+                                        tipoSer="guia turistico";
+                                        do {                                 
+                                 menuViajanteComentarOcontratar();
+                                 opcion=lectorMenu.nextInt();
+                                 switch(opcion)
+                                 {
+                                     case 1:
+                                         System.out.println(viajanteNuevo.contratar(guiaContratado, tipoSer));
+                                     case 2:
+                                         System.out.println("ingrese el comentario:   ");
+                                         comentario=le.nextLine();
+                                        comentarioNuevo= viajanteNuevo.comentar(comentario);
+                                         guiaContratado.agregarComentario(comentarioNuevo);
+                                 }
+                             } while (opcion!=0);
+                                        
+                                        break;
+                                    case 2:
+                                        
+                             System.out.println("ingrese la edad minima");
+                             inferior=lectorMenu.nextInt();
+                             System.out.println("ingrese la edad maxima");
+                             superior=lectorMenu.nextInt();
+                             System.out.println("\n ayudantes con edad minima de "+inferior+" y edad maxima de "+superior+"\n");
+                               System.out.println(conte.mostrarGuiaXrangoEdad(inferior, superior));  
+                               buscarUnaPersonaXid(conte, guiaContratado);
+                               do {                                 
+                                 menuViajanteComentarOcontratar();
+                                 opcion=lectorMenu.nextInt();
+                                 switch(opcion)
+                                 {
+                                     case 1:
+                                         System.out.println(viajanteNuevo.contratar(guiaContratado, tipoSer)); 
+                                     case 2:
+                                         System.out.println("ingrese el comentario:   ");
+                                         comentario=le.nextLine();
+                                        comentarioNuevo= viajanteNuevo.comentar(comentario);
+                                         guiaContratado.agregarComentario(comentarioNuevo);
+                                 }
+                             } while (opcion!=0);
+                                        
+                                }
+                                
+                            } while (opcion!=0);
+                            
+                    
+                    }
+                   
                     
                 } while (opcion!=0);
-                
+                case 2:
+                    verficarContraseñaExiste(conte, ayudanteNuevo);
+                    System.out.println(ayudanteNuevo.toString());
+                    do {                        
+                       menuGuiaViajante();
+                        opcion=lectorMenu.nextInt();
+                        switch(opcion)
+                        {
+                            case 1: 
+                                do {                                    
+                                    menuBuscarViajantes();
+                                    opcion=lectorMenu.nextInt();
+                                    switch(opcion)
+                                    {
+                                        case 1:
+                                            cargarUnLugar(lugar);
+                                            System.out.println(conte.mostrarViajanteXdestino(lug));
+                                            buscarUnaPersonaXid(conte, viajanteBuscado);
+                                            System.out.println("ingrese el comentario:  ");
+                                            comentario=le.nextLine();
+                                            comentarioNuevo= ayudanteNuevo.comentar(comentario);
+                                            viajanteBuscado.agregarComentario(comentarioNuevo);
+                                            case 2:
+                                            System.out.println("ingrese la edad minima");
+                                            inferior=lectorMenu.nextInt();
+                                            System.out.println("ingrese la edad maxima");
+                                            superior=lectorMenu.nextInt();
+                                            System.out.println("\n viajantes con edad minima de "+inferior+" y edad maxima de "+superior+"\n");
+                                            System.out.println(conte.mostrarViajanteXRangodeEdad(inferior, superior)); 
+                                            buscarUnaPersonaXid(conte, viajanteBuscado);
+                                            System.out.println("ingrese el comentario:  ");
+                                            comentario=le.nextLine();
+                                            comentarioNuevo= ayudanteNuevo.comentar(comentario);
+                                            viajanteBuscado.agregarComentario(comentarioNuevo);
+                                                
+                                    }
+                                } while (opcion!=0);
+                                
+                                
+                        }
+                    } while (opcion!=0);
+                    
+                case 3:
+                    verficarContraseñaExiste(conte, guiaNuevo);
+                    System.out.println(guiaNuevo.toString());
+                                      do {                        
+                       menuGuiaViajante();
+                        opcion=lectorMenu.nextInt();
+                        switch(opcion)
+                        {
+                            case 1: 
+                                do {                                    
+                                    menuBuscarViajantes();
+                                    opcion=lectorMenu.nextInt();
+                                    switch(opcion)
+                                    {
+                                        case 1:
+                                            cargarUnLugar(lugar);
+                                            System.out.println(conte.mostrarViajanteXdestino(lug));
+                                            buscarUnaPersonaXid(conte, viajanteBuscado);
+                                            System.out.println("ingrese el comentario:  ");
+                                            comentario=le.nextLine();
+                                            comentarioNuevo= guiaNuevo.comentar(comentario);
+                                            viajanteBuscado.agregarComentario(comentarioNuevo);
+                                            case 2:
+                                            System.out.println("ingrese la edad minima");
+                                            inferior=lectorMenu.nextInt();
+                                            System.out.println("ingrese la edad maxima");
+                                            superior=lectorMenu.nextInt();
+                                            System.out.println("\n viajantes con edad minima de "+inferior+" y edad maxima de "+superior+"\n");
+                                            System.out.println(conte.mostrarViajanteXRangodeEdad(inferior, superior)); 
+                                            buscarUnaPersonaXid(conte, viajanteBuscado);
+                                            System.out.println("ingrese el comentario:  ");
+                                            comentario=le.nextLine();
+                                            comentarioNuevo= guiaNuevo.comentar(comentario);
+                                            viajanteBuscado.agregarComentario(comentarioNuevo);
+                                                
+                                    }
+                                } while (opcion!=0);
+                                
+                                
+                        }
+                    } while (opcion!=0);
             }
              
                
@@ -216,12 +397,29 @@ public class Main {
       
          jsonConte.grabarContenedora(jo);   
     }
+    public static  void menuGuiaViajante()
+    {
+        System.out.println("1-comentar a un viajante");
+        System.out.println("2- ver el estado de mis servicios");
+        System.out.println("3- ver mi contraseña");
+    }
+    public static  void menuBuscarViajantes()
+    { 
+        System.out.println("1-Buscar un viajantes por destino.");
+        System.out.println("2-Buscar viajantes en  un determinado rango de edad");
+        
+    }
+    public static void menuViajanteComentarOcontratar()
+    {
+        System.out.println("1- contratar");
+        System.out.println("2-comentar");
+    }
     public static String tipoServicioContratar()
     {
         Scanner lector=new Scanner(System.in);
         int numeroIngresado;
         String tipoSer=new String();
-        System.out.println("seleciones el numero correspondiente a aquel servicio que desea contratar");
+        System.out.println("seleciones el numero correspondiente a aquel servicio que desea contratar de un ayudante");
         System.out.println("1- alojamiento");
         System.out.println("2- transporte");
         numeroIngresado=lector.nextInt();
@@ -413,7 +611,7 @@ public class Main {
         System.out.println("1-viajante");
         System.out.println("2-ayudante");
         System.out.println("3-guia");
-        System.out.println("0-Salir");
+        System.out.println("4-volver");
     }
     /// para que expecifique que tipo de servicio ofrece el ayudante, y asi crear el objeto que le corresponda
     public static void menu1de2de1()
@@ -428,7 +626,7 @@ public class Main {
          System.out.println("1-Transporte");
         System.out.println("2-Alojamiento");
         System.out.println("3-Guia turismo");
-        System.out.println("0-Salir");
+        
     }
     //este menu se mostrara despues de que se cree un objeto viajante. y se agregue este al arreglo
     public static  void menu1ViajanteAyudante()
@@ -438,28 +636,28 @@ public class Main {
         System.out.println("0-salir");
         
     }
-   
-    public static void menuEjecutableViajante1()
+   public static  void menuViajanteCO()
+   {
+       System.out.println("1- ayudante");
+       System.out.println("2- guia");
+   }
+    public static void menuEjecutableViajante1Ayudante()
     {
         System.out.println("1-Buscar un ayudantes por destino.");
-        System.out.println("2-Buscar un ayudante por tipo de servicio");
-        System.out.println("3-Buscar ayudantes en  un determinado rango de edad");
-        System.out.println("4-ver mi contraseña");
+       System.out.println("2-Buscar ayudantes en  un determinado rango de edad");
+    } 
+    public static void menuEjecutableViajante1Guia()
+    {
+        System.out.println("1-Buscar un guias por destino.");
+        System.out.println("2-Buscar gias en  un determinado rango de edad");
+       
     }
     public static  void menuPrimeroviajanteEjecutable()
     {
         System.out.println("1- Buscar ayudantes.");
         System.out.println("2- Buscar guias de turistas");
     }
-    public static void menuOpcion2Entrar()
-    {
-          
-    }
-    public static  void ejecutar()
-    {
-        int opcion;
-       
-    }
+
  
 }
 
