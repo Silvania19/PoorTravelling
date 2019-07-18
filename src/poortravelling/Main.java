@@ -25,6 +25,12 @@ public class Main {
         LV2=new Lugar("argentina", "buenos aires ", "pinamar");
         LA=new Lugar("argentina", "buenos aires " , " mar del plata");
         LG=new Lugar("argentina", "buenos aires "," pinamar");
+        try {
+             viajante1.agregarContraseña("lafiori", "lafiori");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+       
         serV1=new Transporte(12);
         serv2=new Alojamiento(3);
         serA= new Transporte(2);
@@ -34,7 +40,7 @@ public class Main {
         v2.agregar(serv2);
         ayu1.agregarServicio(sera);
         guia.agregarServivio(serG);
-    /* conte.agreagarUsuarioViajante(viajante1);
+    conte.agreagarUsuarioViajante(viajante1);
         conte.agreagarUsuarioViajante(v2);
         conte.agregarUsuarioAyudante(ayu1);
         conte.agregarUsuarioGuiaTurista(guia);
@@ -44,7 +50,7 @@ public class Main {
         lisLugar.agregarLugar(LV1);
         lisLugar.agregarLugar(LV2);
   
-      */
+    
       ListaLugar listaLugares=new ListaLugar();
       Viajante viajanteNuevo=new Viajante();
       Ayudante ayudanteNuevo=new Ayudante();
@@ -593,7 +599,7 @@ public class Main {
                 agregarPrecioAservicio(ser);
        }
     }
-    public static void agregarCotraseñaAlaPersona( Persona per)
+    static void agregarCotraseñaAlaPersona( Persona per)
     {
         // vamaos a pedir una cotraseña y despues le vamos a pedir que la repita verificaremos si las contraseñas son correctas antes de agregarlo
         String contraseña, contraseñaRepeticion;

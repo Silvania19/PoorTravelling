@@ -2,6 +2,11 @@
 package poortravelling;
 import org.json.JSONException;
 import org.json.JSONObject;
+/**
+ * esta clase  es para el servicio que ofre el guia,
+ * extiende de servicio
+ * @author silva
+ */
 public class ServicioGuia extends Servicio{
     public static  float LIMITEPRECIOGUIA=244;
     private String lugarTuristico;// este especifica a donde el guia va a levar al viajante. ejemplo rio, museo o lo que se le de la gana.

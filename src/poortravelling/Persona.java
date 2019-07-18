@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-public abstract class Persona {
+/**
+ * Clase Padre -> Persona
+ * @author Silvania-Florencia-Marcos
+ */
+public abstract class Persona implements  Comparable{
 
     private String nombre;
     private String apellido;
@@ -18,8 +22,9 @@ public abstract class Persona {
     public abstract boolean alojamiento();
    public abstract  boolean guia();
     
-// constructor vacio
- 
+  /**
+  * Constructor vacio
+  */
     public Persona() {
         setNombre("");
         setApellido("");
@@ -31,7 +36,15 @@ public abstract class Persona {
         lugar = new Lugar();
         comentarios = new ArrayList<>();
     }
-// constructor completo, sin lugar, ni putntaje, ni comentaris
+     /**
+     * Constructor completo, sin lugar, ni putntaje, ni comentario
+     * @param nombre
+     * @param apellido
+     * @param nroTelefono
+     * @param edad
+     * @param id 
+     */
+
 
     public Persona(String nombre, String apellido, String nroTelefono, Integer edad, Integer id) {
         setNombre(nombre);
@@ -45,8 +58,10 @@ public abstract class Persona {
         comentarios = new ArrayList<>();
     }
     
-    // constructor copia, copia todo lo que venga en persona1//
-
+    /**
+ * constructor copia, copia todo lo que venga en persona1
+ * @param persona1 
+ */
     public Persona(Persona persona1) {
         setNombre(persona1.getNombre());
         setApellido(persona1.getApellido());
@@ -55,58 +70,111 @@ public abstract class Persona {
         setId(persona1.getId());
         lugar = new Lugar();//el lugar se remplasara ya que puede ser que cuando camnie de tipo de usuario reemplaza el lugar por lo tal lo borramos y lo volvemos a inicializar en cero toda la clase 
     }
-
-      public void setId(Integer id)
+/**
+     * Asigno una id
+     * @param id 
+     */
+    public  void setId(Integer id)
       {
           this.id=id;
       }
+      /**
+       * Muestro la ID
+       * @return Id
+       */
       public Integer getId()
       {
           return id;
       }
+      /**
+       * Muestro la contraseña
+       * @return contraseña
+       */
     public String getContraseña() {
         return contraseña;
     }
+    /**
+     * Asigno una contraseña
+     * @param contraseña 
+     */
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-
-    public String getNombre() {
+    /**
+     * Muestro el Nombre
+     * @return nombre
+     */
+    public String getNombre(){
         return nombre;
     }
+    /**
+     * Asigno un nombre
+     * @param nombre 
+     */
 
-    public void setNombre(String nombre) {
+   public  void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    /**
+     * Muestro el apellido
+     * @return apellido
+     */
 
     public String getApellido() {
         return apellido;
     }
-
-    public void setApellido(String apellido) {
+    /**
+     * Asigno un apellido
+     * @param apellido 
+     */
+    public  void setApellido(String apellido) {
         this.apellido = apellido;
     }
+    /**
+     * Devuelvo el numero de telefono
+     * @return numero de telefono 
+     */
 
     public String getNroTelefono() {
         return nroTelefono;
     }
-
+    /**
+     * Asigno un numero de teleono
+     * @param nroTelefono 
+     */
     public void setNroTelefono(String nroTelefono) {
         this.nroTelefono = nroTelefono;
     }
+    /**
+     * Devuelvo la edad
+     * @return edad
+     */
 
     public Integer getEdad() {
         return edad;
     }
-
-    public void setEdad(Integer edad) {
+    /**
+     * Asigno una edad
+     * @param edad 
+     */
+    public  void setEdad(Integer edad) {
         this.edad = edad;
     }
-
+    /**
+     * Agrego un comentario al array de comentarios
+     * @param comen 
+     */
     public void agregarComentario(Comentario comen) {
         comentarios.add(comen);
     }
+        /**
+     * para generar un objeto comentario, creamos el objeto comentario y como parametro le mandamos nuestro nombre para que lo guarde en el nombre de comentario
+     * este comentario posteriormente tiene que ser agregado al arreglo de cometrarios de otra persona 
+   
+     * @param comentario
+     * @return 
+     */
     public Comentario comentar(String comentario)
     {
         Comentario retornoComentario=new Comentario(nombre, comentario);/// para generar un objeto comentario, creamos el objeto comentario y como parametro le mandamos nuestro nombre para que lo guarde en el nombre de comentario
@@ -124,6 +192,12 @@ public abstract class Persona {
         }
         return retorno;
     }
+    /**
+     * Agrego una contraseña verificando si la misma es valida
+     * @param contraseña
+     * @param contraseñaRepeticio 
+     * @throws ContraseñaInvalidaException 
+     */
 public void agregarContraseña(String contraseña, String contraseñaRepeticio)throws ContraseñaInvalidaException
     {
         if(verificarContraseña(contraseña, contraseñaRepeticio))
@@ -131,6 +205,13 @@ public void agregarContraseña(String contraseña, String contraseñaRepeticio)t
                 setContraseña(contraseña);
             }
     }
+  /**
+     * Verifico si la contraseña es valida
+     * @param contraseña
+     * @param contraseñaRepeticion
+     * @return true si es correcta
+     * @throws ContraseñaInvalidaException 
+     */
     public boolean verificarContraseña(String contraseña, String contraseñaRepeticion)throws  ContraseñaInvalidaException
     {
         if(contraseña.equals(contraseñaRepeticion))
@@ -145,12 +226,21 @@ public void agregarContraseña(String contraseña, String contraseñaRepeticio)t
     public String toString() {
         return "\n Numero de Usuario"+getId()+"\n Nombre:  " + getNombre() + "\n Apellido:  " + getApellido() + "\n Edad:  " + getEdad() + "\n Numero de telefono:  " + getNroTelefono() + " \n Comentarios: " + listarComentarios();
     }
-
+    /**
+     * Modifico el Lugar
+     * @param pais
+     * @param ciudad
+     * @param localidad 
+     */
     protected void modificarLugar(String pais, String ciudad, String localidad)
     {
         lugar= new Lugar(pais, ciudad, localidad);
     }
-
+       /**
+     * Pasos los datos de Persona a formato Json
+     * @return JsonObject con los datos de persona
+     * @throws JSONException 
+     */
     public JSONObject getFormatoJSON() throws JSONException
     {
         JSONObject jsonPersona= new JSONObject();
@@ -172,13 +262,18 @@ public void agregarContraseña(String contraseña, String contraseñaRepeticio)t
         return  jsonPersona;
         
     }
-    
+      /**
+     * Metodo para elejir lugar de destino del servicio
+     * @param pais
+     * @param ciudad
+     * @param localidad 
+     */
    public  void agregarLugarDestino(Lugar lug)
    {
        modificarLugar(lug.getPais(), lug.getCiudad(), lug.getLocalidad());
    }
    public String verMiContraseña()
    {
-       return "tu contraseña es: "+getContraseña();
+       return getContraseña();
    }
 }

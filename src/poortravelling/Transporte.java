@@ -3,7 +3,10 @@ package poortravelling;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+/**
+ * clase para el servicio transporte de ayudante
+ * @author silva
+ */
 public class Transporte extends ServicioAyudante implements IServicioCantidadYTipo{
     
   public static float PRECIOLIMITETRAMSPORTE=300;

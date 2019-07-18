@@ -5,6 +5,11 @@ import org.json.JSONObject;
 import org.json.JSONException;
 
 import  java.util.ArrayList;
+/**
+ * esta clase hereda de persona 
+ * para manejar un viajante
+ * @author silva
+ */
 public  class Viajante extends  Persona{
 private  ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios que pueda llegar a teer el viajante
   public Viajante()
@@ -57,7 +62,11 @@ private  ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios qu
         }
         return  retorno;
     }
-    //para ver si el viajante necesita u tranporte
+    /**
+     * para ver si el viajante necesita u tranporte
+     * @return true si necesita un transporte ; false si no lo necesita
+     */
+    //
     public boolean transporte()
     {
         boolean retorno=false;
@@ -70,6 +79,11 @@ private  ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios qu
         }
         return retorno;
     }
+    /**
+     * para ver si el viajante necesita un alojamiento
+     * 
+     * @return true si lo necesita; false si no lo necesita 
+     */
         public boolean alojamiento()
     {
         boolean retorno=false;
@@ -82,7 +96,10 @@ private  ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios qu
         }
         return retorno;
     }
-        
+      /**  
+       * para saber si el viajante necesita un guia
+       * @return  true si lo necista; false si no 
+       */
     public boolean guia()
     {
         boolean retorno=false;
@@ -95,6 +112,13 @@ private  ArrayList<Servicio> tiposervicio;/// arreglo de los objtos servicios qu
         }
         return retorno;
     }
+    /**
+     * para que el viajante contrate un servicio
+     * al contratar lo que hace es cambiar el disponible del servicio que quiera de aquel usuario que quiera contratar
+     * @param p el usuario del que quiere contratar un servicio
+     * @param tipoServicio el nombre del servcio que quiera contratar
+     * @return  un mensaje diiendo si es que lo conratao
+     */
     public String contratar(Persona p, String tipoServicio)
     {
         String retorno=new String();

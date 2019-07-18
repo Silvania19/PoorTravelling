@@ -4,7 +4,7 @@ package poortravelling;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Lugar {
+public class Lugar implements Comparable<Object>{
     
    private String pais;
    private String ciudad;
@@ -81,6 +81,27 @@ public class Lugar {
         jsonObject.put("localidad", localidad);
         
         return jsonObject;
+    }
+
+    @Override
+    public int compareTo(Object arg0) {
+        Lugar lug;
+        if(arg0 instanceof  Lugar)
+        {
+            lug=(Lugar)arg0;
+            if(lug.getPais().equals(pais)&& lug.getCiudad().equals(ciudad)&&lug.getLocalidad().equals(localidad))
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        else{
+            
+            return -1;
+        }
     }
     
    

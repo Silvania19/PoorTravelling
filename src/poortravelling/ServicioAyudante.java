@@ -2,6 +2,11 @@
 package poortravelling;
 import org.json.JSONException;
 import org.json.JSONObject;
+/**
+ * esta clse es la padre de los servicios que puede dar un ayudante
+ * extiende de servicio
+ * @author silva
+ */
 public abstract  class ServicioAyudante extends Servicio implements IServicioCantidadYTipo{
      private Integer disponibilidadCantidad;
 

@@ -2,6 +2,10 @@ package poortravelling;
 import  org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
+/**
+ * esta clase es la padre de todos los servicios que se den e un nuestro sistema
+ * @author silva
+ */
 public abstract class Servicio {
 
     private float precio;

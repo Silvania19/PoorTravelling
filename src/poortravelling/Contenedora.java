@@ -4,11 +4,16 @@ import  org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public class Contenedora {
-    ///usaremos un arreglo para cada clase de usuario por que trabajaremos mas independinetes que que en conjuntos 
-   private  ManejoUsuario<Viajante>usuarioviajantes;
+  /**
+ * Contenedora contiene Arrays de tipo de cada uno de los integrante
+ * @author Silvania-Florencia-Marcos
+ */
+   private  ManejoUsuario< Viajante>usuarioviajantes;
     private ManejoUsuario<Ayudante> usuarioAyudantes;
-    private ManejoUsuario<GuiaTurista> usuarioGuiasTuristas;
-  
+    private ManejoUsuario< GuiaTurista> usuarioGuiasTuristas;
+    /**
+   * Constructor donde inicializo los contenedores
+   */
     public Contenedora()
     {
         usuarioviajantes=new ManejoUsuario<>();
@@ -16,19 +21,35 @@ public class Contenedora {
         usuarioGuiasTuristas=new ManejoUsuario<>();
 
     }
+        /**
+     * Agrego usuario viajante
+     * @param vianjate1 
+     */
     public void agreagarUsuarioViajante(Viajante vianjate1){
-        ///viajantes.agregarUsuario(vianjate1., vianjate1);
+        usuarioviajantes.agregarUsuario(vianjate1.verMiContraseña(), vianjate1);
     }
+       /**
+     * Agrego usuario Ayudante
+     * @param ayudante 
+     */
     public  void agregarUsuarioAyudante(Ayudante ayudante)
     {
         usuarioAyudantes.agregarUsuario(ayudante.verMiContraseña(), ayudante);
     }
+     /**
+     * Agrego usuario Guia turista
+     * @param guiaTurista 
+     */
     public void agregarUsuarioGuiaTurista(GuiaTurista guiaTurista)
     {
         usuarioGuiasTuristas.agregarUsuario(guiaTurista.verMiContraseña(), guiaTurista);
     }
 
-
+    /**
+     *  Paso los contenedoras a formato JSON
+     * @return JSON object con los datos de las contenedoras
+     * @throws JSONException 
+     */
     public JSONObject jsonContenedora()throws  JSONException
     {
         JSONObject jsonConteRetorno=new JSONObject();

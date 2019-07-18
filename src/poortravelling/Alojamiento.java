@@ -1,7 +1,10 @@
 package poortravelling;
 ///falta verificar tipo 
 //verificar precio
-
+/**
+ * 
+ * @author Silvania-Florencia-Marcos
+ */
 import org.json.JSONObject;
 import org.json.JSONException;
 import org.json.JSONArray;
@@ -9,30 +12,48 @@ public class Alojamiento extends ServicioAyudante {
 
     private String tipoAlojamiento;
     public static float PRECIOLIMITEALOJAMIENTO=500;
+        /**
+     * Constructor vacio
+     */
     public Alojamiento() {
         super();
         setTipo("");
 
     }
-
+/**
+ * Constructor completo
+ * @param disponibilidadCantidad
+ * @param disponibilidadTiempo 
+ */
     public Alojamiento(Integer disponibilidadCantidad){
         super(disponibilidadCantidad);
         setTipo("");
         setPrecio(0);
     }
     
-
+/**
+ * Asigna un tipo de alojamiento
+ * @param tipo 
+ */
     @Override
     public void setTipo(String tipo) {
         tipoAlojamiento=tipo;
         
     }
-
+/**
+ * Muestra el tipo de Alojamiento
+ * @return tipoAlojamiento
+ */
     @Override
     public String getTipo() {
     return tipoAlojamiento;
     }
-
+/**
+ * Verifica si el precio a asignar es valido o no.
+ * @param precio
+ * @return true si el precio es correcto, que no paso el limite.
+ * @throws PrecioIncorrectoException 
+ */
     @Override
     public boolean verificarPrecio(float precio) throws PrecioIncorrectoException{
   if(precio<=PRECIOLIMITEALOJAMIENTO)
@@ -46,6 +67,12 @@ public class Alojamiento extends ServicioAyudante {
         }
     }
 
+    
+    /**
+     * Asigno un precio mientras verifico el mismo
+     * @param precio
+     * @throws PrecioIncorrectoException 
+     */
 
     @Override
     public void agregarPrecio(float precio) throws PrecioIncorrectoException {
@@ -56,7 +83,12 @@ public class Alojamiento extends ServicioAyudante {
             
             
   }
-
+        /**
+     * Verifica Si el tipo de Servicio es valido
+     * @param tipoServicio
+     * @return true si el Tipo de srvicio es corrrecto
+     * @throws TipoServicioIncorrectoException 
+     */
     @Override
     public boolean verificarTipoServicio(String tipoServicio) throws TipoServicioIncorrectoException {
               if(tipoServicio.equalsIgnoreCase(CONSTANTE1ALOJAMIENTOAYUDANTE)|| tipoServicio.equalsIgnoreCase(CONSTANTE3ALOJAMIENTOAYUDANTE))
@@ -68,7 +100,12 @@ public class Alojamiento extends ServicioAyudante {
             throw new TipoServicioIncorrectoException(" el tipo de servicio ingresado no correponde a algun tipo de transporte");
         }
     }
-
+    
+   /**
+     * Asigno un tipo de servicio mientras verifico si el mismo es valido
+     * @param tipoServicio
+     * @throws TipoServicioIncorrectoException 
+     */
     @Override
     public void agregarTipoServicio(String tipoServicio) throws TipoServicioIncorrectoException {
           if(verificarTipoServicio(tipoServicio))
@@ -76,16 +113,22 @@ public class Alojamiento extends ServicioAyudante {
            setTipo(tipoServicio);
          }
     }
-
+     /**
+     * Muestro los Tipos de Servicios
+     * 
+     */
     @Override
     public String mostrarTiposServicios() {
     return "( " +CONSTANTE1ALOJAMIENTOAYUDANTE+ "   "+CONSTANTE2ALOJAMIENTOAYUDANTE+"  "+CONSTANTE3ALOJAMIENTOAYUDANTE+" )";
     }
-
+   
     void agregarTipoServicio(Alojamiento alojamiento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Muestro el tipo de alojamiento y el precio
+     * @return datos del alojamiento
+     */
     @Override
     public String toString() {
         return super.toString()+" \n Precio: "+getPrecio()+" \n Tipo de alojamiento: "+getTipo(); //To change body of generated methods, choose Tools | Templates.

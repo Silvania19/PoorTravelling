@@ -7,7 +7,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
-public class ManejoUsuario<t extends Persona> {
+/**
+ * esta clase es generica, su tipo gebnerico solo puede ser de una clase que herede de persona, para tener una coleccion de los distintos tipos de usuario
+ * @author silva
+ * @param <t> 
+ */
+public class ManejoUsuario<t extends Persona> implements Comparable<t>{
 
     private TreeMap<String, t> coleccionUsuario;
 
@@ -93,6 +98,13 @@ public class ManejoUsuario<t extends Persona> {
         }
         return arregloDePersonaRetorno;
     }
+
+    @Override
+    public int compareTo(t arg0) {
+        int retorno;
+       
+        return 1;
+   }
 
    
     
